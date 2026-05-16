@@ -2,7 +2,16 @@ import Image from "next/image";
 import { CTA } from "@/components/ui/CTA";
 import { DimensionLabel } from "@/components/ui/DimensionLabel";
 import { CircleMark } from "@/components/ui/CircleMark";
-import { studio, heroFeature } from "@/lib/content";
+import { studio, heroFeature as defaultFeature } from "@/lib/content";
+
+type Feature = {
+  image: string;
+  imageAlt: string;
+  projectName: string;
+  projectCity: string;
+  projectCategory: string;
+  projectYear: number;
+};
 
 /**
  * MM hero variant: SPLIT layout.
@@ -10,7 +19,8 @@ import { studio, heroFeature } from "@/lib/content";
  * MM uses a clean split: solid bone left with copy, image right inside a card
  * with the circle stamp. Feels more handmade, more vegetal.
  */
-export function Hero() {
+export function Hero({ feature }: { feature?: Feature } = {}) {
+  const heroFeature = feature ?? defaultFeature;
   return (
     <section className="hero relative min-h-[100svh] container-edge overflow-hidden">
       <div className="pt-32 md:pt-40 pb-16">
