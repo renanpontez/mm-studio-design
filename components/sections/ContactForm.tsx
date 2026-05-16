@@ -44,7 +44,7 @@ export function ContactForm() {
   };
 
   const fieldBase =
-    "w-full bg-transparent border-b border-stone/40 pb-3 pt-1 text-ink placeholder:text-stone/70 focus:border-moss-dark outline-none transition-colors duration-300";
+    "w-full bg-transparent border-b border-stone/40 pb-3 pt-1 text-ink placeholder:text-stone/70 focus:border-caramel-dark outline-none transition-colors duration-300";
 
   return (
     <form
@@ -122,8 +122,8 @@ export function ContactForm() {
               className={cn(
                 "rounded-full border px-4 py-2 font-mono-label transition-colors duration-300",
                 projectType === t
-                  ? "bg-moss-dark text-bone border-moss-dark"
-                  : "border-stone/40 text-ink hover:border-moss-dark"
+                  ? "bg-caramel-dark text-bone border-caramel-dark"
+                  : "border-stone/40 text-ink hover:border-caramel-dark"
               )}
             >
               {t}
@@ -145,8 +145,8 @@ export function ContactForm() {
               className={cn(
                 "rounded-full border px-4 py-2 font-mono-label transition-colors duration-300",
                 service === s
-                  ? "bg-moss-dark text-bone border-moss-dark"
-                  : "border-stone/40 text-ink hover:border-moss-dark"
+                  ? "bg-caramel-dark text-bone border-caramel-dark"
+                  : "border-stone/40 text-ink hover:border-caramel-dark"
               )}
             >
               {s}
@@ -179,7 +179,7 @@ export function ContactForm() {
         </p>
         <button
           type="submit"
-          className="group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-3.5 text-sm tracking-wide text-bone transition-colors duration-500 hover:bg-moss-dark"
+          className="group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-3.5 text-sm tracking-wide text-bone transition-colors duration-500 hover:bg-caramel-dark"
         >
           <span className="font-mono-label !tracking-[0.16em]">
             {submitted ? "Reenviar conversa" : "Iniciar conversa"}
@@ -202,7 +202,7 @@ export function ContactForm() {
       </div>
 
       {submitted && (
-        <p className="md:col-span-2 font-mono-label text-moss-dark">
+        <p className="md:col-span-2 font-mono-label text-caramel-dark">
           Tudo certo. Se o WhatsApp não abriu automaticamente,{" "}
           <a
             href={studio.whatsapp}

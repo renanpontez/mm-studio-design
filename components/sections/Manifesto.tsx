@@ -21,7 +21,7 @@ export function Manifesto() {
           {segments.map((seg, segIdx) => (
             <span
               key={segIdx}
-              className={cn(seg.italic && "italic text-moss-dark")}
+              className={cn(seg.italic && "italic text-caramel-dark")}
             >
               {seg.text.split(" ").map((word) => {
                 wordIndex += 1;

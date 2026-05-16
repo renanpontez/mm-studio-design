@@ -14,7 +14,7 @@ export function Services() {
             <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] max-w-[18ch] reveal-word">
               <span>
                 Três jeitos de tirar a ideia{" "}
-                <span className="italic text-moss-dark">do papel</span>.
+                <span className="italic text-caramel-dark">do papel</span>.
               </span>
             </h2>
           </div>
@@ -38,13 +38,13 @@ export function Services() {
                 <span className="font-mono-label text-stone">
                   {s.ordinal} / 03
                 </span>
-                <CircleMark className="h-10 w-auto text-ink/40 transition-all duration-700 group-hover:text-moss-dark group-hover:rotate-12" />
+                <CircleMark className="h-10 w-auto text-ink/40 transition-all duration-700 group-hover:text-caramel-dark group-hover:rotate-12" />
               </header>
 
               <h3 className="mt-12 font-display text-3xl md:text-4xl leading-tight text-ink">
                 {s.name}
               </h3>
-              <p className="mt-3 italic text-moss-dark">{s.tagline}</p>
+              <p className="mt-3 italic text-caramel-dark">{s.tagline}</p>
 
               <p className="mt-6 text-ink-2 leading-relaxed">{s.description}</p>
 

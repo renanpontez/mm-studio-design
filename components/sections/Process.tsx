@@ -7,7 +7,7 @@ import { processSteps } from "@/lib/content";
  * MM variant: VERTICAL TIMELINE.
  * Atheliê shows a 4-step horizontal grid with a progress line on top.
  * MM uses a vertical timeline with each step as a row, a hand-circle marker
- * on the left rail, and a thin moss line drawing top-to-bottom on scroll.
+ * on the left rail, and a thin caramel line drawing top-to-bottom on scroll.
  */
 export function Process() {
   return (
@@ -37,7 +37,7 @@ export function Process() {
           />
           {/* progress line that fills top-to-bottom on scroll */}
           <div
-            className="absolute left-6 md:left-10 top-0 bottom-0 w-px bg-moss-dark/60 progress-line"
+            className="absolute left-6 md:left-10 top-0 bottom-0 w-px bg-caramel-dark/60 progress-line"
             aria-hidden="true"
           />
 
@@ -49,7 +49,7 @@ export function Process() {
               {/* circle marker on the rail */}
               <div className="absolute left-0 top-0 flex items-center justify-center w-12 md:w-20 h-12">
                 <span className="relative inline-flex items-center justify-center w-12 h-12 bg-bone-2 rounded-full">
-                  <CircleMark className="h-10 w-10 text-moss-dark" />
+                  <CircleMark className="h-10 w-10 text-caramel-dark" />
                   <span className="absolute font-mono-label text-ink text-[0.65rem]">
                     {step.ordinal}
                   </span>

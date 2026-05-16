@@ -25,7 +25,7 @@ export default function ServicosPage() {
         <SectionLabel ordinal="01" label="Serviços" />
         <h1 className="mt-6 font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-tight text-ink max-w-[15ch]">
           Três jeitos de tirar a ideia{" "}
-          <span className="italic text-moss-dark">do papel</span>.
+          <span className="italic text-caramel-dark">do papel</span>.
         </h1>
         <p className="mt-10 max-w-md text-ink-2">
           Da consultoria pontual ao acompanhamento integral de obra.
@@ -43,14 +43,14 @@ export default function ServicosPage() {
                 className="grid grid-cols-1 md:grid-cols-12 gap-y-8 md:gap-x-10 fade-up"
               >
                 <div className="md:col-span-4">
-                  <CircleMark className="h-16 w-auto text-moss-dark/60 mb-6" />
+                  <CircleMark className="h-16 w-auto text-caramel-dark/60 mb-6" />
                   <span className="font-display text-7xl md:text-8xl text-ink/15 leading-none">
                     {s.ordinal}
                   </span>
                   <h2 className="mt-4 font-display text-3xl md:text-5xl leading-tight text-ink">
                     {s.name}
                   </h2>
-                  <p className="mt-3 italic text-moss-dark">{s.tagline}</p>
+                  <p className="mt-3 italic text-caramel-dark">{s.tagline}</p>
                 </div>
 
                 <div className="md:col-span-7 md:col-start-6">
@@ -98,7 +98,7 @@ export default function ServicosPage() {
           <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight max-w-[20ch] reveal-word">
             <span>
               Não sabe qual{" "}
-              <span className="italic text-moss-dark">se encaixa</span>?
+              <span className="italic text-caramel-dark">se encaixa</span>?
             </span>
           </h2>
           <div className="flex flex-wrap items-center gap-4 md:justify-end fade-up">

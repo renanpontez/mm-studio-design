@@ -32,7 +32,7 @@ export default function PortfolioPage() {
         <SectionLabel ordinal="01" label="Portfolio" />
         <h1 className="mt-6 font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-tight text-ink max-w-[14ch]">
           Cada espaço tem{" "}
-          <span className="italic text-moss-dark">sua história</span>.
+          <span className="italic text-caramel-dark">sua história</span>.
         </h1>
         <p className="mt-10 max-w-md text-ink-2">
           Projetos residenciais e corporativos desenvolvidos pelo estúdio.
@@ -45,7 +45,7 @@ export default function PortfolioPage() {
             <a
               key={cat}
               href={`#${cat}`}
-              className="rounded-full border border-ink/15 px-3 py-1.5 text-ink hover:border-moss-dark hover:bg-moss-dark hover:text-bone transition-colors duration-500"
+              className="rounded-full border border-ink/15 px-3 py-1.5 text-ink hover:border-caramel-dark hover:bg-caramel-dark hover:text-bone transition-colors duration-500"
             >
               {categoryLabels[cat]}
             </a>

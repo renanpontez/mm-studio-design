@@ -27,7 +27,7 @@ export default function ContatoPage() {
         <SectionLabel ordinal="01" label="Contato" />
         <h1 className="mt-6 font-display text-[clamp(2.75rem,8vw,7rem)] leading-[0.95] tracking-tight text-ink max-w-[14ch]">
           Vamos criar{" "}
-          <span className="italic text-moss-dark">juntas</span>?
+          <span className="italic text-caramel-dark">juntas</span>?
         </h1>
         <p className="mt-10 max-w-xl text-lg md:text-xl text-ink-2">
           Estamos prontas para entender suas ideias e trazê-las à vida.
@@ -78,7 +78,7 @@ export default function ContatoPage() {
             >
               <header className="flex items-center justify-between">
                 <span className="font-mono-label text-stone">{c.label}</span>
-                <CircleMark className="h-8 w-auto text-ink/40 transition-all duration-500 group-hover:text-moss-dark group-hover:rotate-12" />
+                <CircleMark className="h-8 w-auto text-ink/40 transition-all duration-500 group-hover:text-caramel-dark group-hover:rotate-12" />
               </header>
               <p
                 className={`font-display text-xl md:text-2xl text-ink leading-tight ${c.lowercase ? "lowercase" : ""}`}
@@ -114,7 +114,7 @@ export default function ContatoPage() {
               <h2 className="mt-6 font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight max-w-[18ch] reveal-word">
                 <span>
                   Conta um pouco{" "}
-                  <span className="italic text-moss-dark">sobre o projeto</span>.
+                  <span className="italic text-caramel-dark">sobre o projeto</span>.
                 </span>
               </h2>
               <p className="mt-6 text-ink-2 max-w-sm fade-up">

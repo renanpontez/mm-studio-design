@@ -177,7 +177,7 @@ export default async function ProjectDetailPage({ params }: Props) {
               </svg>
               Projeto anterior
             </span>
-            <span className="font-display text-2xl md:text-3xl text-ink group-hover:text-moss-dark transition-colors duration-500">
+            <span className="font-display text-2xl md:text-3xl text-ink group-hover:text-caramel-dark transition-colors duration-500">
               {prev.name}
             </span>
           </Link>
@@ -196,7 +196,7 @@ export default async function ProjectDetailPage({ params }: Props) {
                 />
               </svg>
             </span>
-            <span className="font-display text-2xl md:text-3xl text-ink group-hover:text-moss-dark transition-colors duration-500">
+            <span className="font-display text-2xl md:text-3xl text-ink group-hover:text-caramel-dark transition-colors duration-500">
               {next.name}
             </span>
           </Link>
@@ -208,7 +208,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight max-w-[18ch] reveal-word">
             <span>
               Quer um projeto{" "}
-              <span className="italic text-moss-dark">assim</span>?
+              <span className="italic text-caramel-dark">assim</span>?
             </span>
           </h2>
           <div className="flex flex-wrap items-center gap-4 md:justify-end fade-up">

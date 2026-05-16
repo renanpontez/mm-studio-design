@@ -46,7 +46,7 @@ export function CTA({
         target={target}
         rel={rel}
         className={cn(
-          "group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-3.5 text-sm tracking-wide text-bone transition-colors duration-500 hover:bg-moss-dark",
+          "group inline-flex items-center gap-3 rounded-full bg-ink px-7 py-3.5 text-sm tracking-wide text-bone transition-colors duration-500 hover:bg-caramel-dark",
           className
         )}
       >

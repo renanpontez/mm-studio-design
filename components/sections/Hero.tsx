@@ -33,7 +33,7 @@ export function Hero() {
               <span className="reveal-word">
                 <span>Espaços que</span>
               </span>
-              <span className="block italic text-moss-dark reveal-word">
+              <span className="block italic text-caramel-dark reveal-word">
                 <span>respiram</span>
               </span>
               <span className="block reveal-word">
@@ -70,7 +70,7 @@ export function Hero() {
               />
               {/* hand-circle stamp anchored top-right, over the image */}
               <div className="absolute top-4 right-4 bg-bone/85 backdrop-blur-md rounded-full p-3">
-                <CircleMark className="h-10 w-10 text-moss-dark" />
+                <CircleMark className="h-10 w-10 text-caramel-dark" />
               </div>
             </div>
 
@@ -81,7 +81,7 @@ export function Hero() {
                 <span>Projeto em destaque</span>
               </div>
               <div className="inline-flex items-center gap-3 rounded-full bg-bone/60 backdrop-blur-md px-4 py-2 font-mono-label shadow-soft ring-1 ring-bone/40">
-                <span className="block h-1.5 w-1.5 rounded-full bg-moss-dark" />
+                <span className="block h-1.5 w-1.5 rounded-full bg-caramel-dark" />
                 <span className="text-ink">{heroFeature.projectName}</span>
                 <span className="text-ink-2/80">
                   · {heroFeature.projectCity}

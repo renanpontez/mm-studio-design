@@ -72,7 +72,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             <h1 className="mt-6 font-display text-[clamp(2.75rem,8vw,7rem)] leading-[0.95] tracking-tight text-ink max-w-[14ch]">
               {service.name}.
             </h1>
-            <p className="mt-6 italic text-moss-dark text-xl md:text-2xl">
+            <p className="mt-6 italic text-caramel-dark text-xl md:text-2xl">
               {service.tagline}
             </p>
             <p className="mt-8 max-w-lg text-lg text-ink-2">
@@ -80,7 +80,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             </p>
           </div>
           <div className="md:col-span-4">
-            <CircleMark className="h-20 w-auto text-moss-dark/50" />
+            <CircleMark className="h-20 w-auto text-caramel-dark/50" />
           </div>
         </div>
       </section>
@@ -178,7 +178,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                 key={i}
                 className="rounded-3xl bg-bone-2 p-8 md:p-10 fade-up"
               >
-                <CircleMark className="h-12 w-auto text-moss-dark/60" />
+                <CircleMark className="h-12 w-auto text-caramel-dark/60" />
                 <h3 className="mt-6 font-display text-2xl md:text-3xl text-ink leading-tight">
                   {d.title}
                 </h3>
@@ -272,7 +272,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight max-w-[18ch] reveal-word">
             <span>
               Pronta para começar com{" "}
-              <span className="italic text-moss">
+              <span className="italic text-caramel">
                 {service.name.toLowerCase()}
               </span>
               ?
@@ -283,7 +283,7 @@ export default async function ServiceDetailPage({ params }: Props) {
               href={studio.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 rounded-full bg-bone px-7 py-3.5 text-sm tracking-wide text-ink transition-colors duration-500 hover:bg-moss hover:text-bone"
+              className="group inline-flex items-center gap-3 rounded-full bg-bone px-7 py-3.5 text-sm tracking-wide text-ink transition-colors duration-500 hover:bg-caramel hover:text-bone"
             >
               <span className="font-mono-label !tracking-[0.16em]">
                 Iniciar conversa

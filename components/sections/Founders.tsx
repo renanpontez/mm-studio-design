@@ -21,7 +21,7 @@ export function Founders() {
           <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] max-w-[22ch] reveal-word">
             <span>
               Duas amigas, dois olhares,{" "}
-              <span className="italic text-moss-dark">um estúdio</span>.
+              <span className="italic text-caramel-dark">um estúdio</span>.
             </span>
           </h2>
         </div>
@@ -46,7 +46,7 @@ export function Founders() {
               className="object-cover"
             />
             <div className="absolute bottom-4 left-4 bg-bone/80 backdrop-blur-md rounded-full p-3">
-              <CircleMark className="h-10 w-10 text-moss-dark" />
+              <CircleMark className="h-10 w-10 text-caramel-dark" />
             </div>
           </div>
           <div className="mt-4 flex justify-between font-mono-label text-stone">
@@ -74,7 +74,7 @@ export function Founders() {
             {/* left rail: ordinal inside a circle stamp */}
             <div className="md:col-span-3">
               <div className="relative inline-flex items-center justify-center">
-                <CircleMark className="h-24 w-24 text-moss-dark/60" />
+                <CircleMark className="h-24 w-24 text-caramel-dark/60" />
                 <span className="absolute font-display text-3xl text-ink">
                   0{i + 1}
                 </span>

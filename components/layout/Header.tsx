@@ -36,7 +36,7 @@ export function Header() {
             aria-label={studio.name}
             style={reveal(1)}
           >
-            <CircleMark className="h-8 w-auto text-moss-dark transition-transform duration-700 group-hover:rotate-6" />
+            <CircleMark className="h-8 w-auto text-caramel-dark transition-transform duration-700 group-hover:rotate-6" />
             <span className="font-mono-label !text-[0.7rem] text-ink">
               MM Studio · Design
             </span>
@@ -64,7 +64,7 @@ export function Header() {
               href={studio.whatsapp}
               target="_blank"
               rel="noopener noreferrer"
-              className="nav-reveal inline-flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 font-mono-label text-ink transition-colors duration-500 hover:border-moss-dark hover:bg-moss-dark hover:text-bone"
+              className="nav-reveal inline-flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 font-mono-label text-ink transition-colors duration-500 hover:border-caramel-dark hover:bg-caramel-dark hover:text-bone"
               style={reveal(navigation.length + 2)}
             >
               Criar juntas

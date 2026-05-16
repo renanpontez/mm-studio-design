@@ -14,11 +14,11 @@ export function ContactCTA() {
 
       <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-10 items-end">
         <div className="md:col-span-8 relative">
-          <CircleMark className="absolute -top-8 -left-2 md:-left-8 h-24 w-auto text-moss-dark/40" />
+          <CircleMark className="absolute -top-8 -left-2 md:-left-8 h-24 w-auto text-caramel-dark/40" />
           <h2 className="font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-tight max-w-[14ch] reveal-word">
             <span>
               Vamos criar{" "}
-              <span className="italic text-moss-dark">juntas</span>?
+              <span className="italic text-caramel-dark">juntas</span>?
             </span>
           </h2>
           <p className="mt-8 max-w-md text-ink-2 fade-up">

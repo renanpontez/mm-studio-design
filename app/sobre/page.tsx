@@ -32,7 +32,7 @@ export default function SobrePage() {
         <SectionLabel ordinal="01" label="Sobre" />
         <h1 className="mt-6 font-display text-[clamp(2.75rem,8vw,7rem)] leading-[0.95] tracking-tight text-ink max-w-[16ch]">
           Duas amigas, dois olhares,{" "}
-          <span className="italic text-moss-dark">um estúdio</span>.
+          <span className="italic text-caramel-dark">um estúdio</span>.
         </h1>
         <p className="mt-10 max-w-xl text-lg md:text-xl text-ink-2">
           MM Studio Design nasceu da amizade entre Marly Martins e Emilly
@@ -55,7 +55,7 @@ export default function SobrePage() {
             <span className="manifesto-word inline-block opacity-15 me-[0.28em]">maneira </span>
             <span className="manifesto-word inline-block opacity-15 me-[0.28em]">de </span>
             <span className="manifesto-word inline-block opacity-15 me-[0.28em]">criar </span>
-            <span className="italic text-moss-dark">
+            <span className="italic text-caramel-dark">
               <span className="manifesto-word inline-block opacity-15 me-[0.28em]">lugares </span>
               <span className="manifesto-word inline-block opacity-15 me-[0.28em]">vivos, </span>
               <span className="manifesto-word inline-block opacity-15 me-[0.28em]">conscientes </span>
@@ -96,7 +96,7 @@ export default function SobrePage() {
             <h2 className="font-display text-[clamp(1.75rem,3.6vw,2.75rem)] leading-[1.15] max-w-[22ch] reveal-word">
               <span>
                 Sustentabilidade e{" "}
-                <span className="italic text-moss-dark">sensibilidade</span>{" "}
+                <span className="italic text-caramel-dark">sensibilidade</span>{" "}
                 em cada decisão.
               </span>
             </h2>
@@ -119,7 +119,7 @@ export default function SobrePage() {
             >
               <div className="md:col-span-3">
                 <div className="relative inline-flex items-center justify-center">
-                  <CircleMark className="h-24 w-24 text-moss-dark/60" />
+                  <CircleMark className="h-24 w-24 text-caramel-dark/60" />
                   <span className="absolute font-display text-3xl text-ink">
                     0{i + 1}
                   </span>
@@ -162,7 +162,7 @@ export default function SobrePage() {
             >
               <header className="flex items-start justify-between">
                 <span className="font-mono-label text-stone">{p.ordinal} / 03</span>
-                <CircleMark className="h-10 w-auto text-moss-dark/50" />
+                <CircleMark className="h-10 w-auto text-caramel-dark/50" />
               </header>
               <h3 className="font-display text-3xl md:text-4xl leading-tight text-ink">
                 {p.name}
@@ -186,7 +186,7 @@ export default function SobrePage() {
               aria-hidden="true"
             />
             <div
-              className="absolute left-6 md:left-10 top-0 bottom-0 w-px bg-moss-dark/60 progress-line"
+              className="absolute left-6 md:left-10 top-0 bottom-0 w-px bg-caramel-dark/60 progress-line"
               aria-hidden="true"
             />
 
@@ -197,7 +197,7 @@ export default function SobrePage() {
               >
                 <div className="absolute left-0 top-0 flex items-center justify-center w-12 md:w-20 h-12">
                   <span className="relative inline-flex items-center justify-center w-12 h-12 bg-bone-2 rounded-full">
-                    <CircleMark className="h-10 w-10 text-moss-dark" />
+                    <CircleMark className="h-10 w-10 text-caramel-dark" />
                     <span className="absolute font-mono-label text-ink text-[0.65rem]">
                       {step.ordinal}
                     </span>
@@ -224,7 +224,7 @@ export default function SobrePage() {
           <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight max-w-[18ch] reveal-word">
             <span>
               Vamos criar{" "}
-              <span className="italic text-moss-dark">juntas</span>?
+              <span className="italic text-caramel-dark">juntas</span>?
             </span>
           </h2>
           <div className="flex flex-wrap items-center gap-4 md:justify-end fade-up">

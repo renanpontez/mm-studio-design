@@ -10,10 +10,10 @@ export function Footer() {
       <Hairline />
       <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pt-12">
         <div className="md:col-span-5 flex items-start gap-4">
-          <CircleMark className="h-12 w-auto text-moss-dark" />
+          <CircleMark className="h-12 w-auto text-caramel-dark" />
           <div>
             <p className="font-display text-2xl leading-tight">
-              MM <span className="italic text-moss-dark">Studio Design</span>
+              MM <span className="italic text-caramel-dark">Studio Design</span>
             </p>
             <p className="mt-2 max-w-xs text-sm text-ink-2">
               Estamos prontas para entender suas ideias e trazê-las à vida.

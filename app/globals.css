@@ -11,8 +11,8 @@
   --color-bone-2: #e6dfd0;
   --color-ink: #1f1e1a;
   --color-ink-2: #3e3b33;
-  --color-moss: #6b7a4e;
-  --color-moss-dark: #916e47;
+  --color-caramel: #b0895c;
+  --color-caramel-dark: #916e47;
   --color-clay: #a86a4a;
   --color-stone: #9c9384;
 
@@ -43,13 +43,13 @@
   --secondary-foreground: #1f1e1a;
   --muted: #e6dfd0;
   --muted-foreground: #3e3b33;
-  --accent: #6b7a4e;
+  --accent: #916e47;
   --accent-foreground: #f2eee5;
   --destructive: #b3261e;
   --destructive-foreground: #f2eee5;
   --border: rgba(156, 147, 132, 0.35);
   --input: rgba(156, 147, 132, 0.4);
-  --ring: #6b7a4e;
+  --ring: #916e47;
   --radius: 0.75rem;
 }
 
@@ -114,7 +114,7 @@
   }
 
   ::selection {
-    background: var(--color-moss-dark);
+    background: var(--color-caramel-dark);
     color: var(--color-bone);
   }
 }
@@ -211,7 +211,7 @@
     width: 5rem;
     height: 5rem;
     border-radius: 999px;
-    border: 1px solid color-mix(in srgb, var(--color-moss) 60%, transparent);
+    border: 1px solid color-mix(in srgb, var(--color-caramel) 60%, transparent);
     pointer-events: none;
   }
 }
