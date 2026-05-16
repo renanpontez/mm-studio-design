@@ -1,0 +1,316 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@import "@fontsource-variable/bodoni-moda";
+@import "@fontsource-variable/geist";
+@import "@fontsource-variable/jetbrains-mono";
+
+@theme {
+  /* MM Studio Design — botanical paper */
+  --color-bone: #f2eee5;
+  --color-bone-2: #e6dfd0;
+  --color-ink: #1f1e1a;
+  --color-ink-2: #3e3b33;
+  --color-moss: #6b7a4e;
+  --color-moss-dark: #916e47;
+  --color-clay: #a86a4a;
+  --color-stone: #9c9384;
+
+  --font-display: "Bodoni Moda Variable", "Italiana", "Marcellus", serif;
+  --font-sans: "Geist Variable", system-ui, -apple-system, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --tracking-mono: 0.18em;
+
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+
+  --shadow-soft:
+    0 1px 2px rgba(31, 30, 26, 0.04), 0 8px 24px rgba(31, 30, 26, 0.06);
+}
+
+/* shadcn css vars themed to MM palette */
+:root {
+  --background: #f2eee5;
+  --foreground: #1f1e1a;
+  --card: #f2eee5;
+  --card-foreground: #1f1e1a;
+  --popover: #f2eee5;
+  --popover-foreground: #1f1e1a;
+  --primary: #1f1e1a;
+  --primary-foreground: #f2eee5;
+  --secondary: #e6dfd0;
+  --secondary-foreground: #1f1e1a;
+  --muted: #e6dfd0;
+  --muted-foreground: #3e3b33;
+  --accent: #6b7a4e;
+  --accent-foreground: #f2eee5;
+  --destructive: #b3261e;
+  --destructive-foreground: #f2eee5;
+  --border: rgba(156, 147, 132, 0.35);
+  --input: rgba(156, 147, 132, 0.4);
+  --ring: #6b7a4e;
+  --radius: 0.75rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  html {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    letter-spacing: 0.005em;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: var(--color-bone);
+    color: var(--color-ink);
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* warmer grain (slight clay tint) */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 50;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.4  0 0 0 0 0.35  0 0 0 0 0.25  0 0 0 0.65 0'/></filter><rect width='200' height='200' filter='url(%23n)'/></svg>");
+  }
+
+  ::selection {
+    background: var(--color-moss-dark);
+    color: var(--color-bone);
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+
+  .font-mono-label {
+    font-family: var(--font-mono);
+    text-transform: uppercase;
+    letter-spacing: var(--tracking-mono);
+    font-size: 0.6875rem;
+    font-weight: 500;
+  }
+
+  .hairline {
+    height: 1px;
+    background-color: color-mix(in srgb, var(--color-stone) 50%, transparent);
+  }
+
+  .pretty-link {
+    position: relative;
+    display: inline-block;
+  }
+  .pretty-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 1px;
+    background-color: currentColor;
+    transform: scaleX(1);
+    transform-origin: right;
+    transition: transform 0.5s var(--ease-out-expo);
+  }
+  .pretty-link:hover::after {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .reveal-word {
+    display: inline-block;
+    overflow: hidden;
+    vertical-align: bottom;
+  }
+  .reveal-word > span {
+    display: inline-block;
+    transform: translateY(110%);
+    opacity: 0;
+    transition:
+      transform 0.9s var(--ease-out-expo),
+      opacity 0.9s var(--ease-out-expo);
+  }
+  .is-revealed .reveal-word > span {
+    transform: translateY(0%);
+    opacity: 1;
+  }
+
+  .grow-line {
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 1.2s var(--ease-out-expo);
+  }
+  .is-revealed .grow-line {
+    transform: scaleX(1);
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.9s var(--ease-out-expo),
+      transform 0.9s var(--ease-out-expo);
+  }
+  .is-revealed .fade-up {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* circle-mark stamp — vegetal/handmade alternative to athelie's arch-top */
+  .circle-stamp {
+    position: relative;
+  }
+  .circle-stamp::after {
+    content: "";
+    position: absolute;
+    top: -1rem;
+    right: -1rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 999px;
+    border: 1px solid color-mix(in srgb, var(--color-moss) 60%, transparent);
+    pointer-events: none;
+  }
+}
+
+@layer utilities {
+  .container-edge {
+    padding-inline: clamp(1.25rem, 4vw, 4rem);
+    max-width: 80rem;
+    margin-inline: auto;
+  }
+  .container-tight {
+    max-width: 76rem;
+    margin-inline: auto;
+  }
+
+  /* page-intro: stagger fade-up of direct children on mount */
+  .page-intro > * {
+    opacity: 0;
+    transform: translateY(24px);
+    animation: page-intro-in 0.9s var(--ease-out-expo) forwards;
+  }
+  .page-intro > *:nth-child(1) { animation-delay: 0.08s; }
+  .page-intro > *:nth-child(2) { animation-delay: 0.18s; }
+  .page-intro > *:nth-child(3) { animation-delay: 0.28s; }
+  .page-intro > *:nth-child(4) { animation-delay: 0.38s; }
+  .page-intro > *:nth-child(5) { animation-delay: 0.48s; }
+  .page-intro > *:nth-child(6) { animation-delay: 0.58s; }
+  .page-intro > *:nth-child(7) { animation-delay: 0.68s; }
+  .page-intro > *:nth-child(8) { animation-delay: 0.78s; }
+
+  .nav-reveal {
+    opacity: 0;
+    transform: translateY(-8px);
+    animation: nav-reveal-in 0.8s var(--ease-out-expo) forwards;
+    animation-delay: calc(var(--reveal-i, 1) * 0.07s);
+  }
+
+  .hero .reveal-word > span {
+    animation: word-in 1s var(--ease-out-expo) forwards;
+  }
+  .hero .reveal-word:nth-of-type(1) > span { animation-delay: 0.1s; }
+  .hero .reveal-word:nth-of-type(2) > span { animation-delay: 0.2s; }
+  .hero .reveal-word:nth-of-type(3) > span { animation-delay: 0.3s; }
+  .hero .reveal-word:nth-of-type(4) > span { animation-delay: 0.4s; }
+  .hero .fade-up { animation: fade-up-in 0.9s var(--ease-out-expo) 0.7s forwards; }
+  .hero .fade-up:nth-of-type(2) { animation-delay: 0.85s; }
+  .hero .fade-up:nth-of-type(3) { animation-delay: 1s; }
+
+  .hero-image {
+    transform: scale(1.06);
+    opacity: 0;
+    animation: hero-image-in 1.6s var(--ease-out-soft) 0.6s forwards;
+  }
+
+  .progress-line {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1.6s var(--ease-out-expo);
+  }
+  .is-revealed .progress-line {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes word-in {
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes fade-up-in {
+  to { transform: translateY(0); opacity: 1; }
+}
+@keyframes hero-image-in {
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes page-intro-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes nav-reveal-in {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal-word > span,
+  .fade-up,
+  .hero-image,
+  .page-intro > *,
+  .nav-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .grow-line,
+  .progress-line {
+    transform: scaleX(1) !important;
+  }
+}
