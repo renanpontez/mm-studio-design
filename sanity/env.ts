@@ -17,14 +17,12 @@ export const revalidateSecret = process.env.SANITY_REVALIDATE_SECRET;
 export const readToken = process.env.SANITY_READ_TOKEN;
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
+  // Soft guard: warn but never throw. Pages + client lazy-create and
+  // gracefully fall back to lib/content.ts when projectId is empty.
+  // This lets production builds succeed before Sanity is configured.
   if (v === undefined) {
-    // Avoid throwing during build if vars are missing — return empty so
-    // the build proceeds and runtime errors surface only when called.
-    if (process.env.NODE_ENV !== "production" || process.env.SANITY_ALLOW_MISSING_ENV === "1") {
-      console.warn(errorMessage);
-      return "" as unknown as T;
-    }
-    throw new Error(errorMessage);
+    if (process.env.NODE_ENV !== "production") console.warn(errorMessage);
+    return "" as unknown as T;
   }
   return v;
 }
