@@ -16,7 +16,6 @@ export const processSection = defineType({
   title: "Processo",
   type: "object",
   fields: [
-    defineField({ name: "ordinal", type: "string", initialValue: "05" }),
     defineField({ name: "label", type: "string", initialValue: "Processo" }),
     defineField({ name: "heading", type: "richHeadline" }),
     defineField({ name: "steps", type: "array", of: [step] }),

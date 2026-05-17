@@ -29,7 +29,7 @@ export default function SobrePage() {
           <DimensionLabel label="Design de interiores" className="hidden md:inline-flex" />
         </div>
 
-        <SectionLabel ordinal="01" label="Sobre" />
+        <SectionLabel label="Sobre" />
         <h1 className="mt-6 font-display text-[clamp(2.75rem,8vw,7rem)] leading-[0.95] tracking-tight text-ink max-w-[16ch]">
           Duas amigas, dois olhares,{" "}
           <span className="italic text-caramel-dark">um estúdio</span>.
@@ -42,7 +42,7 @@ export default function SobrePage() {
       </section>
 
       <section className="container-edge py-16 md:py-24 manifesto-section reveal-on-scroll">
-        <SectionLabel ordinal="02" label="Manifesto" />
+        <SectionLabel label="Manifesto" />
         <div className="mt-10 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
           <div className="md:col-span-2 hidden md:block pt-6">
             <Hairline reveal />
@@ -73,7 +73,7 @@ export default function SobrePage() {
 
       {/* portrait + intro */}
       <section className="container-edge py-16 md:py-24 reveal-on-scroll">
-        <SectionLabel ordinal="03" label="A dupla MM" />
+        <SectionLabel label="A dupla MM" />
         <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12 items-center">
           <div className="md:col-span-5 fade-up">
             <div className="relative overflow-hidden bg-bone-2 rounded-[8px] aspect-[4/5]">
@@ -143,7 +143,7 @@ export default function SobrePage() {
       <section className="container-edge py-16 md:py-24 reveal-on-scroll">
         <div className="flex items-end justify-between flex-wrap gap-6">
           <div>
-            <SectionLabel ordinal="04" label="Valores" />
+            <SectionLabel label="Valores" />
             <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] max-w-[18ch] reveal-word">
               <span>Três pilares de cada projeto.</span>
             </h2>
@@ -175,7 +175,7 @@ export default function SobrePage() {
 
       <section className="bg-bone-2 py-16 md:py-24 reveal-on-scroll">
         <div className="container-edge">
-          <SectionLabel ordinal="05" label="Processo" />
+          <SectionLabel label="Processo" />
           <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] max-w-[18ch] reveal-word">
             <span>Como caminhamos juntas.</span>
           </h2>

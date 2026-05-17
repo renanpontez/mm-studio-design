@@ -33,7 +33,6 @@ export type ServiceSummary = {
   _id: string;
   name: string;
   slug: string;
-  ordinal?: string;
   tagline?: string;
   description?: string;
 };
@@ -58,7 +57,6 @@ export type Founder = {
 
 export type Pillar = {
   _id: string;
-  ordinal?: string;
   name: string;
   description?: string;
   order?: number;
@@ -95,15 +93,13 @@ export type HeroSection = {
 export type ManifestoSection = {
   _type: "manifestoSection";
   _key: string;
-  ordinal?: string;
   label?: string;
-  segments?: { text: string; italic?: boolean }[];
+  body?: RichHeadline;
 };
 
 export type FeaturedProjectsSection = {
   _type: "featuredProjectsSection";
   _key: string;
-  ordinal?: string;
   label?: string;
   heading?: RichHeadline;
   viewAllLink?: CTA;
@@ -113,7 +109,6 @@ export type FeaturedProjectsSection = {
 export type ServicesSection = {
   _type: "servicesSection";
   _key: string;
-  ordinal?: string;
   label?: string;
   heading?: RichHeadline;
   intro?: string;
@@ -124,7 +119,6 @@ export type ServicesSection = {
 export type FoundersSection = {
   _type: "foundersSection";
   _key: string;
-  ordinal?: string;
   label?: string;
   heading?: RichHeadline;
   intro?: string;
@@ -135,7 +129,6 @@ export type FoundersSection = {
 export type ProcessSection = {
   _type: "processSection";
   _key: string;
-  ordinal?: string;
   label?: string;
   heading?: RichHeadline;
   steps?: { ordinal?: string; name: string; description?: string }[];
@@ -144,7 +137,6 @@ export type ProcessSection = {
 export type PillarsSection = {
   _type: "pillarsSection";
   _key: string;
-  ordinal?: string;
   label?: string;
   heading?: RichHeadline;
   pillars?: Pillar[];
@@ -153,7 +145,6 @@ export type PillarsSection = {
 export type ContactCtaSection = {
   _type: "contactCtaSection";
   _key: string;
-  ordinal?: string;
   label?: string;
   heading?: RichHeadline;
   intro?: string;

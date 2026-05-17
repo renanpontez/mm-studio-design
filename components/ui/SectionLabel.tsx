@@ -1,6 +1,4 @@
 type Props = {
-  // `ordinal` is accepted for backwards-compat with Sanity blocks but no longer rendered.
-  ordinal?: string;
   label: string;
 };
 

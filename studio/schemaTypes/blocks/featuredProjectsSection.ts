@@ -5,7 +5,6 @@ export const featuredProjectsSection = defineType({
   title: "Projetos em destaque",
   type: "object",
   fields: [
-    defineField({ name: "ordinal", type: "string", initialValue: "02" }),
     defineField({ name: "label", type: "string", initialValue: "Projetos selecionados" }),
     defineField({ name: "heading", type: "richHeadline" }),
     defineField({

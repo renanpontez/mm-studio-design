@@ -22,7 +22,7 @@ export default function ServicosPage() {
           <DimensionLabel label={studio.cities.join(" · ")} className="hidden md:inline-flex" />
         </div>
 
-        <SectionLabel ordinal="01" label="Serviços" />
+        <SectionLabel label="Serviços" />
         <h1 className="mt-6 font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-tight text-ink max-w-[15ch]">
           Três jeitos de tirar a ideia{" "}
           <span className="italic text-caramel-dark">do papel</span>.
@@ -35,7 +35,7 @@ export default function ServicosPage() {
 
       <section className="bg-bone-2 py-16 md:py-24 reveal-on-scroll">
         <div className="container-edge">
-          <SectionLabel ordinal="02" label="Em detalhe" />
+          <SectionLabel label="Em detalhe" />
           <div className="mt-12 space-y-20 md:space-y-32">
             {services.map((s) => (
               <article

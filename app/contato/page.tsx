@@ -24,7 +24,7 @@ export default function ContatoPage() {
           />
         </div>
 
-        <SectionLabel ordinal="01" label="Contato" />
+        <SectionLabel label="Contato" />
         <h1 className="mt-6 font-display text-[clamp(2.75rem,8vw,7rem)] leading-[0.95] tracking-tight text-ink max-w-[14ch]">
           Vamos criar{" "}
           <span className="italic text-caramel-dark">juntas</span>?
@@ -37,7 +37,7 @@ export default function ContatoPage() {
       </section>
 
       <section className="container-edge py-12 md:py-16 reveal-on-scroll">
-        <SectionLabel ordinal="02" label="Canais" />
+        <SectionLabel label="Canais" />
         <div className="mt-10">
           <Hairline reveal />
         </div>
@@ -110,7 +110,7 @@ export default function ContatoPage() {
         <div className="container-edge">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
             <div className="md:col-span-4">
-              <SectionLabel ordinal="03" label="Briefing rápido" />
+              <SectionLabel label="Briefing rápido" />
               <h2 className="mt-6 font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-tight max-w-[18ch] reveal-word">
                 <span>
                   Conta um pouco{" "}

@@ -5,7 +5,6 @@ export const foundersSection = defineType({
   title: "Sócias",
   type: "object",
   fields: [
-    defineField({ name: "ordinal", type: "string", initialValue: "04" }),
     defineField({ name: "label", type: "string", initialValue: "Sócias" }),
     defineField({ name: "heading", type: "richHeadline" }),
     defineField({ name: "intro", type: "text", rows: 3 }),
