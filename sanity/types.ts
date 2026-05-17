@@ -117,6 +117,7 @@ export type ServicesSection = {
   label?: string;
   heading?: RichHeadline;
   intro?: string;
+  sectionImage?: SanityImage;
   services?: ServiceSummary[];
 };
 

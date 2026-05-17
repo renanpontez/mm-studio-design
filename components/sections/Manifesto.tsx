@@ -25,7 +25,7 @@ export function Manifesto({
   const segs = segments && segments.length > 0 ? segments : DEFAULT_SEGMENTS;
   let wordIndex = 0;
   return (
-    <section className="container-edge pt-32 md:pt-48 pb-12 md:pb-20 manifesto-section">
+    <section className="container-edge py-24 md:py-32 manifesto-section">
       <SectionLabel ordinal={ordinal} label={label} />
       <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
         <div className="md:col-span-2 hidden md:block pt-6">

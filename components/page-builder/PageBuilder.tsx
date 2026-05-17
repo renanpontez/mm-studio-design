@@ -56,7 +56,8 @@ function richHeadlineToReact(
 /**
  * Same as richHeadlineToReact but each portable-text block (== editor pressed
  * Enter for a new line) renders on its own line and gets a .reveal-word wrap
- * for the per-line stagger animation used by Hero.
+ * for the per-line stagger animation used by Hero. Inline `italicAccent` marks
+ * are preserved per-span so a single word can be italicized mid-line.
  */
 function richHeadlineToHero(
   rh: RichHeadline | undefined,
@@ -64,17 +65,21 @@ function richHeadlineToHero(
 ): React.ReactNode {
   if (!rh || rh.length === 0) return null;
   return rh.map((block, bi) => {
-    const isItalicLine = block.children.every((c) =>
-      c.marks?.includes("italicAccent")
-    );
     const lineClass = bi === 0 ? "reveal-word" : "block reveal-word";
-    const text = block.children.map((c) => c.text).join("");
     return (
-      <span
-        key={bi}
-        className={isItalicLine ? `${lineClass} ${italicClass}` : lineClass}
-      >
-        <span>{text}</span>
+      <span key={bi} className={lineClass}>
+        <span>
+          {block.children.map((c, ci) => {
+            const isItalic = c.marks?.includes("italicAccent");
+            return isItalic ? (
+              <span key={ci} className={italicClass}>
+                {c.text}
+              </span>
+            ) : (
+              <span key={ci}>{c.text}</span>
+            );
+          })}
+        </span>
       </span>
     );
   });
@@ -169,12 +174,14 @@ function ServicesBlock({ block }: { block: ServicesSection }) {
     tagline: s.tagline,
     description: s.description,
   }));
+  const image = safeImageUrl(block.sectionImage, 1600);
   return (
     <Services
       ordinal={block.ordinal}
       label={block.label}
       heading={richHeadlineToReact(block.heading)}
       intro={block.intro}
+      image={image || undefined}
       services={mapped.length > 0 ? mapped : undefined}
     />
   );

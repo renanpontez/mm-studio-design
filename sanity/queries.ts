@@ -64,7 +64,7 @@ export const SECTION_FRAGMENT = groq`
     "projects": projects[]->${PROJECT_CARD_FRAGMENT}
   },
   _type == "servicesSection" => {
-    _type, _key, ordinal, label, heading, intro,
+    _type, _key, ordinal, label, heading, intro, sectionImage,
     "services": services[]->{
       _id, name, "slug": slug.current, ordinal, tagline, description
     }

@@ -16,6 +16,7 @@
     "@fontsource-variable/bodoni-moda": "^5.2.7",
     "@fontsource-variable/geist": "^5.2.8",
     "@fontsource-variable/jetbrains-mono": "^5.1.0",
+    "@fontsource-variable/mulish": "^5.2.8",
     "@portabletext/react": "^6.2.0",
     "@radix-ui/react-dialog": "^1.1.4",
     "@radix-ui/react-slot": "^1.1.1",

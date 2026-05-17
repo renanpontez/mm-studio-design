@@ -1,13 +1,12 @@
 type Props = {
-  ordinal: string;
+  // `ordinal` is accepted for backwards-compat with Sanity blocks but no longer rendered.
+  ordinal?: string;
   label: string;
 };
 
-export function SectionLabel({ ordinal, label }: Props) {
+export function SectionLabel({ label }: Props) {
   return (
-    <div className="flex items-baseline gap-3 font-mono-label text-stone">
-      <span className="text-ink-2">{ordinal}</span>
-      <span className="h-px w-8 bg-stone/60" />
+    <div className="flex items-baseline font-mono-label text-stone">
       <span>{label}</span>
     </div>
   );

@@ -49,13 +49,10 @@ export function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="nav-reveal pretty-link inline-flex items-baseline gap-1.5 font-mono-label text-ink"
+                  className="nav-reveal inline-flex items-baseline font-mono-label text-ink transition-colors duration-300 hover:text-caramel-dark"
                   style={reveal(i + 2)}
                 >
-                  <span className="text-stone/70 !text-[0.6rem]">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span>{item.label}</span>
+                  {item.label}
                 </Link>
               ))}
             </nav>

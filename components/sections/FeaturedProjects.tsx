@@ -4,7 +4,6 @@ import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Hairline } from "@/components/ui/Hairline";
 import { CTA } from "@/components/ui/CTA";
 import { projects as staticProjects, categoryLabels } from "@/lib/content";
-import { cn } from "@/lib/utils";
 
 type ProjectCard = {
   slug: string;
@@ -24,20 +23,6 @@ type Props = {
   viewAllHref?: string;
   viewAllLabel?: string;
 };
-
-const layoutClasses = [
-  "md:col-span-7 md:mt-0",
-  "md:col-span-5 md:mt-32",
-  "md:col-span-5",
-  "md:col-span-7 md:mt-24",
-];
-
-const imageRatios = [
-  "aspect-[4/3]",
-  "aspect-[4/5]",
-  "aspect-[4/5]",
-  "aspect-[4/3]",
-];
 
 export function FeaturedProjects({
   ordinal = "02",
@@ -70,22 +55,16 @@ export function FeaturedProjects({
         <Hairline reveal />
       </div>
 
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-x-8 gap-y-20">
-        {featured.map((p, i) => (
+      {/* Uniform same-height grid (replaces the offset masonry layout). Every
+          card shares the same aspect ratio so the row baselines align. */}
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-16">
+        {featured.map((p) => (
           <Link
             key={p.slug}
             href={`/portfolio/${p.slug}`}
-            className={cn(
-              "project-card group block fade-up",
-              layoutClasses[i]
-            )}
+            className="project-card group block fade-up"
           >
-            <div
-              className={cn(
-                "project-image relative overflow-hidden bg-bone-2 rounded-[8px]",
-                imageRatios[i]
-              )}
-            >
+            <div className="project-image relative overflow-hidden bg-bone-2 rounded-[8px] aspect-[4/5]">
               {p.image ? (
                 <Image
                   src={p.image}

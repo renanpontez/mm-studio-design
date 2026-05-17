@@ -41,35 +41,9 @@ export function ContactCTA({
     >
       <SectionLabel ordinal={ordinal} label={label} />
 
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-10 items-end">
-        <div className="md:col-span-8 relative">
-          <CircleMark className="absolute -top-8 -left-2 md:-left-8 h-24 w-auto text-caramel-dark/40" />
-          <h2 className="font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-tight max-w-[14ch] reveal-word">
-            {heading}
-          </h2>
-          {intro && (
-            <p className="mt-8 max-w-md text-ink-2 fade-up">{intro}</p>
-          )}
-
-          <div className="mt-10 flex flex-wrap items-center gap-4 fade-up">
-            {contact.whatsapp && (
-              <CTA href={contact.whatsapp} variant="primary" external>
-                Iniciar conversa
-              </CTA>
-            )}
-            {contact.email && (
-              <CTA
-                href={`mailto:${contact.email}`}
-                variant="ghost"
-                external
-              >
-                Enviar e-mail
-              </CTA>
-            )}
-          </div>
-        </div>
-
-        <div className="md:col-span-4">
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-10 items-start">
+        {/* left: contact details (swapped from atheliê's right-side dl) */}
+        <div className="md:col-span-5">
           <Hairline className="mb-8" reveal />
           <dl className="space-y-6 font-mono-label">
             {contact.phone && (
@@ -122,6 +96,34 @@ export function ContactCTA({
               </div>
             )}
           </dl>
+        </div>
+
+        {/* right: heading + CTAs */}
+        <div className="md:col-span-7 relative md:pl-6">
+          <CircleMark className="absolute -top-8 -right-2 md:-right-4 h-24 w-auto text-caramel-dark/40" />
+          <h2 className="font-display text-[clamp(2.5rem,7vw,6rem)] leading-[0.95] tracking-tight max-w-[14ch] reveal-word">
+            {heading}
+          </h2>
+          {intro && (
+            <p className="mt-8 max-w-md text-ink-2 fade-up">{intro}</p>
+          )}
+
+          <div className="mt-10 flex flex-wrap items-center gap-4 fade-up">
+            {contact.whatsapp && (
+              <CTA href={contact.whatsapp} variant="primary" external>
+                Iniciar conversa
+              </CTA>
+            )}
+            {contact.email && (
+              <CTA
+                href={`mailto:${contact.email}`}
+                variant="ghost"
+                external
+              >
+                Enviar e-mail
+              </CTA>
+            )}
+          </div>
         </div>
       </div>
     </section>

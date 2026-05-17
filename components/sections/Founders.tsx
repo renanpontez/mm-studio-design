@@ -61,68 +61,67 @@ export function Founders({
         <Hairline reveal />
       </div>
 
-      {/* shared portrait + intro */}
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12 items-end">
+      {/* Portrait left, founders stacked right.
+          Image is sticky on desktop so the bios scroll past it. */}
+      <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12 items-start">
         <div className="md:col-span-5 fade-up">
-          <div className="relative overflow-hidden bg-bone-2 rounded-[8px] aspect-[4/5]">
-            {portrait?.src && (
-              <Image
-                src={portrait.src}
-                alt={portrait.alt ?? ""}
-                fill
-                sizes="(min-width: 768px) 35vw, 90vw"
-                className="object-cover"
-              />
-            )}
-            <div className="absolute bottom-4 left-4 bg-bone/80 backdrop-blur-md rounded-full p-3">
-              <CircleMark className="h-10 w-10 text-caramel-dark" />
+          <div className="md:sticky md:top-24">
+            <div className="relative overflow-hidden bg-bone-2 rounded-[8px] aspect-[4/5]">
+              {portrait?.src && (
+                <Image
+                  src={portrait.src}
+                  alt={portrait.alt ?? ""}
+                  fill
+                  sizes="(min-width: 768px) 35vw, 90vw"
+                  className="object-cover"
+                />
+              )}
+              <div className="absolute bottom-4 left-4 bg-bone/80 backdrop-blur-md rounded-full p-3">
+                <CircleMark className="h-10 w-10 text-caramel-dark" />
+              </div>
             </div>
-          </div>
-          <div className="mt-4 flex justify-between font-mono-label text-stone">
-            {founders.slice(0, 3).map((f, i, arr) => (
-              <span key={f.name}>
-                {f.name.split(" ")[0]}
-                {i < arr.length - 1 && <span className="ml-2">+</span>}
-              </span>
-            ))}
+            <div className="mt-4 flex justify-between font-mono-label text-stone">
+              {founders.slice(0, 3).map((f, i, arr) => (
+                <span key={f.name}>
+                  {f.name.split(" ")[0]}
+                  {i < arr.length - 1 && <span className="ml-2">+</span>}
+                </span>
+              ))}
+            </div>
+            {intro && <div className="mt-8">{intro}</div>}
           </div>
         </div>
 
-        <div className="md:col-span-7 md:pl-8">{intro}</div>
-      </div>
-
-      {/* each founder gets her own row */}
-      <div className="mt-20 space-y-16 md:space-y-20">
-        {founders.map((f, i) => (
-          <article
-            key={f.name}
-            className="grid grid-cols-1 md:grid-cols-12 gap-y-6 md:gap-x-10 items-start fade-up"
-          >
-            <div className="md:col-span-3">
-              <div className="relative inline-flex items-center justify-center">
-                <CircleMark className="h-24 w-24 text-caramel-dark/60" />
-                <span className="absolute font-display text-3xl text-ink">
-                  0{i + 1}
-                </span>
+        <div className="md:col-span-7 md:pl-2 space-y-12 md:space-y-16">
+          {founders.map((f, i) => (
+            <article
+              key={f.name}
+              className="grid grid-cols-1 md:grid-cols-12 gap-y-5 md:gap-x-8 items-start fade-up"
+            >
+              <div className="md:col-span-3">
+                <div className="relative inline-flex items-center justify-center">
+                  <CircleMark className="h-16 w-16 text-caramel-dark/60" />
+                  <span className="absolute font-display text-xl text-ink">
+                    0{i + 1}
+                  </span>
+                </div>
+                {f.role && (
+                  <p className="mt-3 font-mono-label text-stone">{f.role}</p>
+                )}
               </div>
-              {f.role && (
-                <p className="mt-4 font-mono-label text-stone">{f.role}</p>
-              )}
-            </div>
 
-            <div className="md:col-span-9 md:pl-4">
-              <Hairline className="mb-5" />
-              <h3 className="font-display text-4xl md:text-5xl leading-tight text-ink">
-                {f.name}
-              </h3>
-              {f.bio && (
-                <p className="mt-5 text-ink-2 text-lg leading-relaxed max-w-2xl">
-                  {f.bio}
-                </p>
-              )}
-            </div>
-          </article>
-        ))}
+              <div className="md:col-span-9">
+                <Hairline className="mb-4" />
+                <h3 className="font-display text-2xl md:text-3xl leading-tight text-ink">
+                  {f.name}
+                </h3>
+                {f.bio && (
+                  <p className="mt-4 text-ink-2 leading-relaxed">{f.bio}</p>
+                )}
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
