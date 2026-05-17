@@ -1,0 +1,24 @@
+[
+  {
+    "_createdAt": "2026-05-17T00:11:38Z",
+    "_id": "founder.marly-martins",
+    "_rev": "e0U66xax9ntwTuYxLuYz0Y",
+    "_type": "founder",
+    "_updatedAt": "2026-05-17T00:11:38Z",
+    "bio": "Arquiteta com olhar único para design sustentável. Sua jornada começou em 2020 com o desejo de transformar espaços e vidas com escolhas conscientes, dos materiais aos fornecedores.",
+    "name": "Marly Martins",
+    "order": 0,
+    "role": "Co-fundadora · Design sustentável"
+  },
+  {
+    "_createdAt": "2026-05-17T00:11:39Z",
+    "_id": "founder.emilly-lorrany",
+    "_rev": "e0U66xax9ntwTuYxLuYzCn",
+    "_type": "founder",
+    "_updatedAt": "2026-05-17T00:11:39Z",
+    "bio": "Sonhava criar espaços inspiradores e juntou-se ao MM Studio com projetos inovadores. Foca em traduzir a vontade do cliente em soluções concretas, do briefing à execução.",
+    "name": "Emilly Lorrany",
+    "order": 1,
+    "role": "Co-fundadora · Inovação de processo"
+  }
+]

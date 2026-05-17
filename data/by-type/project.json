@@ -1,0 +1,90 @@
+[
+  {
+    "_createdAt": "2026-05-17T00:11:30Z",
+    "_id": "project.casa-jv",
+    "_rev": "e0U66xax9ntwTuYxLuYxgw",
+    "_type": "project",
+    "_updatedAt": "2026-05-17T00:11:30Z",
+    "area": "180m²",
+    "category": "residencial",
+    "city": "Fortaleza · CE",
+    "description": "Reforma completa de uma residência em Fortaleza, com integração entre cozinha, sala e área externa. A paleta combina tons de areia, madeira natural e verde-musgo. Móveis sob medida em madeira de reflorestamento.",
+    "imageAlt": "Sala residencial com plantas, luz natural e tons terrosos",
+    "name": "Casa JV",
+    "scope": [
+      "Projeto de Interiores",
+      "Execução de Obras"
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "casa-jv"
+    },
+    "summary": "Uma casa de família repensada para abraçar a luz natural e os hábitos do cotidiano.",
+    "year": 2024
+  },
+  {
+    "_createdAt": "2026-05-17T00:11:31Z",
+    "_id": "project.apartamento-ls",
+    "_rev": "cLwA58X4FF2RcbrKqwGm5l",
+    "_type": "project",
+    "_updatedAt": "2026-05-17T00:11:31Z",
+    "area": "95m²",
+    "category": "residencial",
+    "city": "Fortaleza · CE",
+    "imageAlt": "Apartamento moderno com paleta neutra e mobiliário curvo",
+    "name": "Apartamento LS",
+    "scope": [
+      "Consultoria Completa",
+      "Projeto de Interiores"
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "apartamento-ls"
+    },
+    "summary": "Apartamento jovem repensado para acolher trabalho remoto e momentos de descanso.",
+    "year": 2024
+  },
+  {
+    "_createdAt": "2026-05-17T00:11:32Z",
+    "_id": "project.quarto-jr",
+    "_rev": "Q8Rac0xbAXxO2ML3gXtsIT",
+    "_type": "project",
+    "_updatedAt": "2026-05-17T00:11:32Z",
+    "area": "22m²",
+    "category": "residencial",
+    "city": "Fortaleza · CE",
+    "imageAlt": "Quarto infantil com mobiliário sob medida e paleta suave",
+    "name": "Quarto JR",
+    "scope": [
+      "Projeto de Interiores"
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "quarto-jr"
+    },
+    "summary": "Quarto infantil sob medida, com soluções de armazenamento e cantinho de leitura.",
+    "year": 2023
+  },
+  {
+    "_createdAt": "2026-05-17T00:11:33Z",
+    "_id": "project.sala-ma",
+    "_rev": "cLwA58X4FF2RcbrKqwGmKr",
+    "_type": "project",
+    "_updatedAt": "2026-05-17T00:11:33Z",
+    "area": "60m²",
+    "category": "corporativo",
+    "city": "Fortaleza · CE",
+    "imageAlt": "Sala corporativa com mesa central e iluminação difusa",
+    "name": "Sala MA",
+    "scope": [
+      "Projeto de Interiores",
+      "Execução de Obras"
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "sala-ma"
+    },
+    "summary": "Sala de reuniões corporativa com identidade discreta e materialidade quente.",
+    "year": 2023
+  }
+]

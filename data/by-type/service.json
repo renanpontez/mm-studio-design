@@ -1,0 +1,243 @@
+[
+  {
+    "_createdAt": "2026-05-17T00:11:35Z",
+    "_id": "service.consultoria-completa",
+    "_rev": "Q8Rac0xbAXxO2ML3gXtsP1",
+    "_type": "service",
+    "_updatedAt": "2026-05-17T00:11:35Z",
+    "description": "Diagnóstico técnico e estético do ambiente, com soluções pontuais e um plano de ação para você executar no seu tempo.",
+    "faq": [
+      {
+        "_key": "faq-0",
+        "_type": "faq",
+        "a": "Não. A consultoria é ideal para mudanças pontuais. Se precisa de planta, executivo e detalhamento, vale o Projeto de Interiores.",
+        "q": "A consultoria substitui um projeto completo?"
+      }
+    ],
+    "forWho": [
+      "Você quer ajustes pontuais sem fazer uma reforma completa.",
+      "Quer um olhar profissional antes de comprar móveis ou começar uma obra.",
+      "Está em outra cidade e precisa de orientação prática à distância."
+    ],
+    "includes": [
+      "Visita técnica e diagnóstico do ambiente.",
+      "Paleta de cores, materiais e referências visuais.",
+      "Plano de ação priorizado, com pequenas e médias intervenções.",
+      "Reunião final com tudo documentado."
+    ],
+    "name": "Consultoria Completa",
+    "ordinal": "01",
+    "slug": {
+      "_type": "slug",
+      "current": "consultoria-completa"
+    },
+    "steps": [
+      {
+        "_key": "step-0",
+        "_type": "step",
+        "description": "Entendemos suas rotinas e expectativas.",
+        "name": "Conversa"
+      },
+      {
+        "_key": "step-1",
+        "_type": "step",
+        "description": "Avaliação presencial ou virtual com fotos detalhadas.",
+        "name": "Visita"
+      },
+      {
+        "_key": "step-2",
+        "_type": "step",
+        "description": "Diagnóstico técnico e sugestões de melhorias.",
+        "name": "Estudo"
+      },
+      {
+        "_key": "step-3",
+        "_type": "step",
+        "description": "Plano de ação e próximos passos.",
+        "name": "Devolutiva"
+      }
+    ],
+    "tagline": "Para quem quer começar com clareza."
+  },
+  {
+    "_createdAt": "2026-05-17T00:11:36Z",
+    "_id": "service.projeto-de-interiores",
+    "_rev": "e0U66xax9ntwTuYxLuYykE",
+    "_type": "service",
+    "_updatedAt": "2026-05-17T00:11:36Z",
+    "description": "Projeto completo de interiores: briefing, estudo, executivo, detalhamento, 3D e curadoria de materiais. Atenção rigorosa ao processo e à atmosfera do espaço.",
+    "differentiators": [
+      {
+        "_key": "d-0",
+        "_type": "differentiator",
+        "description": "Priorizamos materiais responsáveis: madeira de reflorestamento, tintas de base mineral, fornecedores locais.",
+        "title": "Olhar sustentável"
+      },
+      {
+        "_key": "d-1",
+        "_type": "differentiator",
+        "description": "Marly e Emilly trabalham juntas em cada decisão, combinando precisão técnica e sensibilidade estética.",
+        "title": "Duas mentes, um projeto"
+      }
+    ],
+    "faq": [
+      {
+        "_key": "faq-0",
+        "_type": "faq",
+        "a": "De 6 a 14 semanas, dependendo da metragem e do nível de detalhamento.",
+        "q": "Quanto tempo dura um projeto?"
+      },
+      {
+        "_key": "faq-1",
+        "_type": "faq",
+        "a": "Sim, o projeto executivo é entregue com tudo documentado para qualquer obra qualificada executar.",
+        "q": "Posso contratar só o projeto?"
+      }
+    ],
+    "forWho": [
+      "Reforma completa de residência ou espaço corporativo.",
+      "Imóvel novo na planta que precisa de planejamento desde o início.",
+      "Você quer um projeto pensado nos detalhes, com identidade clara."
+    ],
+    "includes": [
+      "Briefing aprofundado e moodboard de direção.",
+      "Estudo preliminar e anteprojeto.",
+      "Projeto executivo (plantas técnicas, marcenaria, elétrica).",
+      "Detalhamento de materiais e mobiliário.",
+      "Render 3D dos ambientes principais.",
+      "Curadoria de fornecedores e parceiros sustentáveis."
+    ],
+    "name": "Projeto de Interiores",
+    "ordinal": "02",
+    "relatedProjects": [
+      {
+        "_key": "ref-casa-jv",
+        "_ref": "project.casa-jv",
+        "_type": "reference"
+      },
+      {
+        "_key": "ref-apartamento-ls",
+        "_ref": "project.apartamento-ls",
+        "_type": "reference"
+      }
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "projeto-de-interiores"
+    },
+    "steps": [
+      {
+        "_key": "step-0",
+        "_type": "step",
+        "description": "Identidade do projeto, rotinas, restrições, referências.",
+        "name": "Conversa"
+      },
+      {
+        "_key": "step-1",
+        "_type": "step",
+        "description": "Partido arquitetônico e moodboards.",
+        "name": "Estudo"
+      },
+      {
+        "_key": "step-2",
+        "_type": "step",
+        "description": "Anteprojeto e executivo completo.",
+        "name": "Projeto"
+      },
+      {
+        "_key": "step-3",
+        "_type": "step",
+        "description": "Materiais, mobiliário, iluminação e parceiros.",
+        "name": "Curadoria"
+      }
+    ],
+    "tagline": "Da primeira ideia ao último detalhe."
+  },
+  {
+    "_createdAt": "2026-05-17T00:11:37Z",
+    "_id": "service.execucao-de-obras",
+    "_rev": "cLwA58X4FF2RcbrKqwGmZx",
+    "_type": "service",
+    "_updatedAt": "2026-05-17T00:11:37Z",
+    "description": "Gerenciamento integral da obra: cronograma, fornecedores, compras e acompanhamento técnico. Você acompanha cada passo, sem surpresas.",
+    "differentiators": [
+      {
+        "_key": "d-0",
+        "_type": "differentiator",
+        "description": "Você acompanha cada compra e cada serviço, sem surpresas no fechamento.",
+        "title": "Transparência financeira"
+      },
+      {
+        "_key": "d-1",
+        "_type": "differentiator",
+        "description": "Trabalhamos com fornecedores e profissionais selecionados em Fortaleza.",
+        "title": "Rede local"
+      }
+    ],
+    "faq": [
+      {
+        "_key": "faq-0",
+        "_type": "faq",
+        "a": "Sim, mediante avaliação técnica do projeto.",
+        "q": "Vocês executam projetos de outros profissionais?"
+      }
+    ],
+    "forWho": [
+      "Você já tem um projeto pronto e quer alguém de confiança gerenciando a obra.",
+      "Quer contratar projeto e execução em um único pacote.",
+      "Mora em outra cidade e precisa de acompanhamento técnico local."
+    ],
+    "includes": [
+      "Planejamento de cronograma e orçamento detalhado.",
+      "Curadoria e contratação de fornecedores locais.",
+      "Gestão de compras com transparência financeira.",
+      "Acompanhamento técnico semanal de obra.",
+      "Vistoria final e checklist de entrega."
+    ],
+    "name": "Execução de Obras",
+    "ordinal": "03",
+    "relatedProjects": [
+      {
+        "_key": "ref-casa-jv",
+        "_ref": "project.casa-jv",
+        "_type": "reference"
+      },
+      {
+        "_key": "ref-sala-ma",
+        "_ref": "project.sala-ma",
+        "_type": "reference"
+      }
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "execucao-de-obras"
+    },
+    "steps": [
+      {
+        "_key": "step-0",
+        "_type": "step",
+        "description": "Cronograma, orçamento, fornecedores.",
+        "name": "Planejamento"
+      },
+      {
+        "_key": "step-1",
+        "_type": "step",
+        "description": "Curadoria e aquisição de materiais.",
+        "name": "Compras"
+      },
+      {
+        "_key": "step-2",
+        "_type": "step",
+        "description": "Execução com acompanhamento semanal.",
+        "name": "Obra"
+      },
+      {
+        "_key": "step-3",
+        "_type": "step",
+        "description": "Vistoria final e checklist.",
+        "name": "Entrega"
+      }
+    ],
+    "tagline": "Do papel à entrega das chaves."
+  }
+]

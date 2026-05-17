@@ -1,0 +1,22 @@
+[
+  {
+    "_createdAt": "2026-05-17T00:11:26Z",
+    "_id": "siteSettings",
+    "_rev": "cLwA58X4FF2RcbrKqwGl2L",
+    "_type": "siteSettings",
+    "_updatedAt": "2026-05-17T00:11:26Z",
+    "cities": [
+      "Fortaleza"
+    ],
+    "email": "mmstudiodesign@gmail.com",
+    "instagram": "https://instagram.com/mmstudio.design",
+    "instagramHandle": "@mmstudio.design",
+    "manifesto": "Cada projeto é uma maneira de criar lugares vivos, conscientes e feitos para acolher quem os habita.",
+    "name": "MM Studio Design",
+    "phone": "(85) 9.9647-7447",
+    "phoneHref": "tel:+5585996477447",
+    "shortName": "MM Studio",
+    "tagline": "Espaços que respiram sua história.",
+    "whatsapp": "https://wa.me/5585996477447"
+  }
+]

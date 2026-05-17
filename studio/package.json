@@ -1,0 +1,23 @@
+{
+  "name": "mm-studio-design-studio",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "sanity dev",
+    "start": "sanity start",
+    "build": "sanity build",
+    "deploy": "sanity deploy",
+    "deploy-graphql": "sanity graphql deploy"
+  },
+  "dependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "sanity": "^5.25.1",
+    "@sanity/vision": "^5.25.1",
+    "styled-components": "^6.4.1"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}

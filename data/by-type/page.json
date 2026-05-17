@@ -1,0 +1,296 @@
+[
+  {
+    "_createdAt": "2026-05-17T00:11:44Z",
+    "_id": "drafts.page.home",
+    "_rev": "c6863539-f9ad-40f6-bdcf-6a7f4bd9b877",
+    "_system": {
+      "base": {
+        "id": "page.home",
+        "rev": "cLwA58X4FF2RcbrKqwNw4D"
+      }
+    },
+    "_type": "page",
+    "_updatedAt": "2026-05-17T01:09:36Z",
+    "sections": [
+      {
+        "_key": "hero",
+        "_type": "heroSection",
+        "body": "Design de interiores residencial e corporativo em Fortaleza, com olhar sustentável e a sensibilidade de duas amigas que projetam juntas.",
+        "eyebrow": "Design de interiores",
+        "featuredProject": {
+          "_ref": "project.casa-jv",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "manifesto",
+        "_type": "manifestoSection",
+        "label": "Manifesto",
+        "ordinal": "01"
+      },
+      {
+        "_key": "projects",
+        "_type": "featuredProjectsSection",
+        "label": "Portfolio em destaque",
+        "ordinal": "02",
+        "projects": [
+          {
+            "_key": "p-0",
+            "_ref": "project.casa-jv",
+            "_type": "reference"
+          },
+          {
+            "_key": "p-1",
+            "_ref": "project.apartamento-ls",
+            "_type": "reference"
+          },
+          {
+            "_key": "p-2",
+            "_ref": "project.quarto-jr",
+            "_type": "reference"
+          },
+          {
+            "_key": "p-3",
+            "_ref": "project.sala-ma",
+            "_type": "reference"
+          }
+        ]
+      },
+      {
+        "_key": "services",
+        "_type": "servicesSection",
+        "label": "Serviços",
+        "ordinal": "03",
+        "services": [
+          {
+            "_key": "s-0",
+            "_ref": "service.consultoria-completa",
+            "_type": "reference"
+          },
+          {
+            "_key": "s-1",
+            "_ref": "service.projeto-de-interiores",
+            "_type": "reference"
+          },
+          {
+            "_key": "s-2",
+            "_ref": "service.execucao-de-obras",
+            "_type": "reference"
+          }
+        ]
+      },
+      {
+        "_key": "founders",
+        "_type": "foundersSection",
+        "founders": [
+          {
+            "_key": "f-0",
+            "_ref": "founder.marly-martins",
+            "_type": "reference"
+          },
+          {
+            "_key": "f-1",
+            "_ref": "founder.emilly-lorrany",
+            "_type": "reference"
+          }
+        ],
+        "label": "A dupla MM",
+        "ordinal": "04"
+      },
+      {
+        "_key": "process",
+        "_type": "processSection",
+        "label": "Processo",
+        "ordinal": "05",
+        "steps": [
+          {
+            "_key": "st-0",
+            "_type": "step",
+            "description": "Escutamos suas ideias, rotinas e referências. É aqui que nasce a identidade do projeto.",
+            "name": "Conversa",
+            "ordinal": "01"
+          },
+          {
+            "_key": "st-1",
+            "_type": "step",
+            "description": "Partido inicial, moodboards e estudos para alinhar a direção criativa e técnica.",
+            "name": "Estudo",
+            "ordinal": "02"
+          },
+          {
+            "_key": "st-2",
+            "_type": "step",
+            "description": "Anteprojeto, executivo, detalhamento e especificações. Tudo pronto para a obra.",
+            "name": "Projeto",
+            "ordinal": "03"
+          },
+          {
+            "_key": "st-3",
+            "_type": "step",
+            "description": "Acompanhamento técnico e curadoria de fornecedores até a entrega das chaves.",
+            "name": "Obra",
+            "ordinal": "04"
+          }
+        ]
+      },
+      {
+        "_key": "contact",
+        "_type": "contactCtaSection",
+        "label": "Contato",
+        "ordinal": "06"
+      }
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "home"
+    },
+    "title": "Início"
+  },
+  {
+    "_createdAt": "2026-05-17T00:11:44Z",
+    "_id": "page.home",
+    "_rev": "cLwA58X4FF2RcbrKqwNw4D",
+    "_system": {
+      "base": {
+        "id": "page.home",
+        "rev": "Q8Rac0xbAXxO2ML3gXtsd3"
+      }
+    },
+    "_type": "page",
+    "_updatedAt": "2026-05-17T01:09:01Z",
+    "sections": [
+      {
+        "_key": "hero",
+        "_type": "heroSection",
+        "body": "Design de interiores residencial e corporativo em Fortaleza, com olhar sustentável e a sensibilidade de duas amigas que projetam juntas.",
+        "eyebrow": "Design de interiores",
+        "featuredProject": {
+          "_ref": "project.casa-jv",
+          "_type": "reference"
+        }
+      },
+      {
+        "_key": "manifesto",
+        "_type": "manifestoSection",
+        "label": "Manifesto",
+        "ordinal": "01"
+      },
+      {
+        "_key": "projects",
+        "_type": "featuredProjectsSection",
+        "label": "Portfolio em destaque",
+        "ordinal": "02",
+        "projects": [
+          {
+            "_key": "p-0",
+            "_ref": "project.casa-jv",
+            "_type": "reference"
+          },
+          {
+            "_key": "p-1",
+            "_ref": "project.apartamento-ls",
+            "_type": "reference"
+          },
+          {
+            "_key": "p-2",
+            "_ref": "project.quarto-jr",
+            "_type": "reference"
+          },
+          {
+            "_key": "p-3",
+            "_ref": "project.sala-ma",
+            "_type": "reference"
+          }
+        ]
+      },
+      {
+        "_key": "services",
+        "_type": "servicesSection",
+        "label": "Serviços",
+        "ordinal": "03",
+        "services": [
+          {
+            "_key": "s-0",
+            "_ref": "service.consultoria-completa",
+            "_type": "reference"
+          },
+          {
+            "_key": "s-1",
+            "_ref": "service.projeto-de-interiores",
+            "_type": "reference"
+          },
+          {
+            "_key": "s-2",
+            "_ref": "service.execucao-de-obras",
+            "_type": "reference"
+          }
+        ]
+      },
+      {
+        "_key": "founders",
+        "_type": "foundersSection",
+        "founders": [
+          {
+            "_key": "f-0",
+            "_ref": "founder.marly-martins",
+            "_type": "reference"
+          },
+          {
+            "_key": "f-1",
+            "_ref": "founder.emilly-lorrany",
+            "_type": "reference"
+          }
+        ],
+        "label": "A dupla MM",
+        "ordinal": "04"
+      },
+      {
+        "_key": "process",
+        "_type": "processSection",
+        "label": "Processo",
+        "ordinal": "05",
+        "steps": [
+          {
+            "_key": "st-0",
+            "_type": "step",
+            "description": "Escutamos suas ideias, rotinas e referências. É aqui que nasce a identidade do projeto.",
+            "name": "Conversa",
+            "ordinal": "01"
+          },
+          {
+            "_key": "st-1",
+            "_type": "step",
+            "description": "Partido inicial, moodboards e estudos para alinhar a direção criativa e técnica.",
+            "name": "Estudo",
+            "ordinal": "02"
+          },
+          {
+            "_key": "st-2",
+            "_type": "step",
+            "description": "Anteprojeto, executivo, detalhamento e especificações. Tudo pronto para a obra.",
+            "name": "Projeto",
+            "ordinal": "03"
+          },
+          {
+            "_key": "st-3",
+            "_type": "step",
+            "description": "Acompanhamento técnico e curadoria de fornecedores até a entrega das chaves.",
+            "name": "Obra",
+            "ordinal": "04"
+          }
+        ]
+      },
+      {
+        "_key": "contact",
+        "_type": "contactCtaSection",
+        "label": "Contato",
+        "ordinal": "06"
+      }
+    ],
+    "slug": {
+      "_type": "slug",
+      "current": "home"
+    },
+    "title": "Início"
+  }
+]

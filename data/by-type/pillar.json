@@ -1,0 +1,35 @@
+[
+  {
+    "_createdAt": "2026-05-17T00:11:40Z",
+    "_id": "pillar.sustentabilidade",
+    "_rev": "Q8Rac0xbAXxO2ML3gXtsWV",
+    "_type": "pillar",
+    "_updatedAt": "2026-05-17T00:11:40Z",
+    "description": "Escolhas conscientes em materiais e fornecedores. Cada decisão pesa o impacto antes da estética.",
+    "name": "Sustentabilidade",
+    "order": 0,
+    "ordinal": "01"
+  },
+  {
+    "_createdAt": "2026-05-17T00:11:41Z",
+    "_id": "pillar.funcionalidade",
+    "_rev": "cLwA58X4FF2RcbrKqwGmp3",
+    "_type": "pillar",
+    "_updatedAt": "2026-05-17T00:11:41Z",
+    "description": "Beleza sem função não dura. Estudamos rotinas reais para que o espaço trabalhe a seu favor.",
+    "name": "Funcionalidade",
+    "order": 1,
+    "ordinal": "02"
+  },
+  {
+    "_createdAt": "2026-05-17T00:11:43Z",
+    "_id": "pillar.identidade",
+    "_rev": "Q8Rac0xbAXxO2ML3gXtsaF",
+    "_type": "pillar",
+    "_updatedAt": "2026-05-17T00:11:43Z",
+    "description": "Cada projeto reflete quem habita o espaço, não a moda do momento.",
+    "name": "Identidade",
+    "order": 2,
+    "ordinal": "03"
+  }
+]
