@@ -6,9 +6,10 @@
     "dev": "concurrently -n site,studio -c magenta,green --kill-others-on-fail \"npm run dev:site\" \"npm run dev:studio\"",
     "dev:site": "next dev",
     "dev:studio": "cd studio && npm run dev -- --port 3333",
-    "build": "npm run build:site && npm run build:studio",
+    "build": "next build",
     "build:site": "next build",
-    "build:studio": "cd studio && npm run build",
+    "build:studio": "cd studio && npm install && npm run build",
+    "deploy:studio": "cd studio && npm install && npx sanity deploy",
     "start": "next start",
     "lint": "eslint"
   },

@@ -1,0 +1,58 @@
+[
+  {
+    "target": "project · casa-jv · cover",
+    "docId": "project.casa-jv",
+    "field": "image",
+    "alt": "Sala residencial com plantas, luz natural e tons terrosos",
+    "source": "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1600&q=80&auto=format&fit=crop"
+  },
+  {
+    "target": "project · casa-jv · gallery[0]",
+    "docId": "project.casa-jv",
+    "field": "gallery[0]",
+    "alt": "Sala íntima",
+    "source": "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1600&q=80&auto=format&fit=crop"
+  },
+  {
+    "target": "project · casa-jv · gallery[1]",
+    "docId": "project.casa-jv",
+    "field": "gallery[1]",
+    "alt": "Vista panorâmica",
+    "source": "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1600&q=80&auto=format&fit=crop"
+  },
+  {
+    "target": "project · casa-jv · gallery[2]",
+    "docId": "project.casa-jv",
+    "field": "gallery[2]",
+    "alt": "Quarto principal",
+    "source": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80&auto=format&fit=crop"
+  },
+  {
+    "target": "project · apartamento-ls · cover",
+    "docId": "project.apartamento-ls",
+    "field": "image",
+    "alt": "Apartamento moderno com paleta neutra e mobiliário curvo",
+    "source": "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1600&q=80&auto=format&fit=crop"
+  },
+  {
+    "target": "project · quarto-jr · cover",
+    "docId": "project.quarto-jr",
+    "field": "image",
+    "alt": "Quarto infantil com mobiliário sob medida e paleta suave",
+    "source": "https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80&auto=format&fit=crop"
+  },
+  {
+    "target": "project · sala-ma · cover",
+    "docId": "project.sala-ma",
+    "field": "image",
+    "alt": "Sala corporativa com mesa central e iluminação difusa",
+    "source": "https://images.unsplash.com/photo-1497366811353-6870744d04b2?w=1600&q=80&auto=format&fit=crop"
+  },
+  {
+    "target": "page.home · founders section · portrait",
+    "docId": "page.home",
+    "field": "sections[_key==\"founders\"].portrait",
+    "alt": "Marly Martins e Emilly Lorrany, sócias da MM Studio Design",
+    "source": "/Users/renan/Desktop/_ideas/studio-design-mm/site/public/marly-emilly.png"
+  }
+]
