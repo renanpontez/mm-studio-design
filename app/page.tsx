@@ -15,9 +15,10 @@ import { sanityFetch } from "@/sanity/client";
 import { PAGE_QUERY, SITE_SETTINGS_QUERY } from "@/sanity/queries";
 import type { PageDoc, SiteSettings } from "@/sanity/types";
 
-// Revalidate within 30s so Studio re-ordering propagates quickly even without
-// the webhook hitting. The webhook (/api/revalidate) is still the fast path.
-export const revalidate = 30;
+// Render on every request and rely on the upstream Sanity CDN + our /api/revalidate
+// webhook for cache invalidation. Avoids the "stale prerendered fallback" failure
+// mode that bit us when the build cached a null fetch result.
+export const dynamic = "force-dynamic";
 
 async function fetchHomeData() {
   const safe = async <T,>(p: Promise<T | null>): Promise<T | null> => {
