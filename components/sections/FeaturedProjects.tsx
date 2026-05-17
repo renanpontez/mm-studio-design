@@ -18,7 +18,7 @@ type ProjectCard = {
 type Props = {
   ordinal?: string;
   label?: string;
-  headingText?: string;
+  heading?: React.ReactNode;
   projects?: ProjectCard[];
   viewAllHref?: string;
   viewAllLabel?: string;
@@ -27,7 +27,12 @@ type Props = {
 export function FeaturedProjects({
   ordinal = "02",
   label = "Portfolio em destaque",
-  headingText = "Casas e salas feitas com cuidado.",
+  heading = (
+    <span>
+      Casas e salas feitas{" "}
+      <span className="italic text-caramel-dark">com cuidado</span>.
+    </span>
+  ),
   projects = staticProjects.slice(0, 4),
   viewAllHref = "/portfolio",
   viewAllLabel = "Ver portfolio completo",
@@ -43,7 +48,7 @@ export function FeaturedProjects({
         <div>
           <SectionLabel ordinal={ordinal} label={label} />
           <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] max-w-[15ch] reveal-word">
-            <span>{headingText}</span>
+            {heading}
           </h2>
         </div>
         <CTA href={viewAllHref} variant="underline">

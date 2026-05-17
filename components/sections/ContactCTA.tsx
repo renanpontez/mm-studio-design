@@ -19,6 +19,8 @@ type Props = {
   label?: string;
   heading?: React.ReactNode;
   intro?: string;
+  ctaPrimaryLabel?: string;
+  ctaSecondaryLabel?: string;
   contact?: StudioContact;
 };
 
@@ -32,6 +34,8 @@ export function ContactCTA({
     </span>
   ),
   intro = "Estamos prontas para entender suas ideias e trazê-las à vida. Conte sobre o seu espaço, respondemos em até um dia útil.",
+  ctaPrimaryLabel = "Iniciar conversa",
+  ctaSecondaryLabel = "Enviar e-mail",
   contact = staticStudio,
 }: Props = {}) {
   return (
@@ -111,7 +115,7 @@ export function ContactCTA({
           <div className="mt-10 flex flex-wrap items-center gap-4 fade-up">
             {contact.whatsapp && (
               <CTA href={contact.whatsapp} variant="primary" external>
-                Iniciar conversa
+                {ctaPrimaryLabel}
               </CTA>
             )}
             {contact.email && (
@@ -120,7 +124,7 @@ export function ContactCTA({
                 variant="ghost"
                 external
               >
-                Enviar e-mail
+                {ctaSecondaryLabel}
               </CTA>
             )}
           </div>

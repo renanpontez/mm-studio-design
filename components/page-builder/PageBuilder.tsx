@@ -156,9 +156,7 @@ function FeaturedProjectsBlock({ block }: { block: FeaturedProjectsSection }) {
     <FeaturedProjects
       ordinal={block.ordinal}
       label={block.label}
-      headingText={
-        block.heading?.[0]?.children?.map((c) => c.text).join(" ") ?? undefined
-      }
+      heading={richHeadlineToReact(block.heading)}
       projects={mapped.length > 0 ? mapped : undefined}
       viewAllHref={block.viewAllLink?.href}
       viewAllLabel={block.viewAllLink?.label}
@@ -231,6 +229,8 @@ function ContactCtaBlock({
       label={block.label}
       heading={richHeadlineToReact(block.heading)}
       intro={block.intro}
+      ctaPrimaryLabel={block.ctaPrimary?.label}
+      ctaSecondaryLabel={block.ctaSecondary?.label}
       contact={
         settings
           ? {

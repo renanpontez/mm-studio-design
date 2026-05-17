@@ -19,6 +19,9 @@ type Props = {
   founders?: Founder[];
 };
 
+const DEFAULT_INTRO_TEXT =
+  "Acreditamos que cada espaço carrega uma história. O nosso papel é escutar essa história e devolvê-la em forma de ambiente.";
+
 /**
  * MM variant: STACKED founder rows.
  * Atheliê shows a single portrait left + two bios stacked right.
@@ -34,15 +37,21 @@ export function Founders({
       <span className="italic text-caramel-dark">um estúdio</span>.
     </span>
   ),
-  intro = (
-    <p className="font-display text-2xl md:text-3xl text-ink-2 italic leading-relaxed max-w-md fade-up">
-      “Acreditamos que cada espaço carrega uma história. O nosso papel é
-      escutar essa história e devolvê-la em forma de ambiente.”
-    </p>
-  ),
+  intro = DEFAULT_INTRO_TEXT,
   portrait = staticPortrait,
   founders = staticFounders,
 }: Props = {}) {
+  // Sanity sends `intro` as a plain string; the static fallback / consumers may
+  // send ReactNode. Strings get wrapped in the styled quote treatment so
+  // editors don't lose visual hierarchy when filling text from the Studio.
+  const introNode =
+    typeof intro === "string" ? (
+      <p className="font-display text-2xl md:text-3xl text-ink-2 italic leading-relaxed max-w-md fade-up">
+        “{intro}”
+      </p>
+    ) : (
+      intro
+    );
   return (
     <section className="container-edge py-24 md:py-32 reveal-on-scroll">
       <div className="flex items-end justify-between gap-6 flex-wrap">
@@ -88,7 +97,7 @@ export function Founders({
                 </span>
               ))}
             </div>
-            {intro && <div className="mt-8">{intro}</div>}
+            {introNode && <div className="mt-8">{introNode}</div>}
           </div>
         </div>
 
