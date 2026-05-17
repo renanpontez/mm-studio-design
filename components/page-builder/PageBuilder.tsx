@@ -53,6 +53,33 @@ function richHeadlineToReact(
   );
 }
 
+/**
+ * Same as richHeadlineToReact but each portable-text block (== editor pressed
+ * Enter for a new line) renders on its own line and gets a .reveal-word wrap
+ * for the per-line stagger animation used by Hero.
+ */
+function richHeadlineToHero(
+  rh: RichHeadline | undefined,
+  italicClass = "italic text-caramel-dark"
+): React.ReactNode {
+  if (!rh || rh.length === 0) return null;
+  return rh.map((block, bi) => {
+    const isItalicLine = block.children.every((c) =>
+      c.marks?.includes("italicAccent")
+    );
+    const lineClass = bi === 0 ? "reveal-word" : "block reveal-word";
+    const text = block.children.map((c) => c.text).join("");
+    return (
+      <span
+        key={bi}
+        className={isItalicLine ? `${lineClass} ${italicClass}` : lineClass}
+      >
+        <span>{text}</span>
+      </span>
+    );
+  });
+}
+
 function safeImageUrl(image: unknown, width = 1600): string {
   if (!image || typeof image !== "object") return "";
   const asAny = image as { asset?: unknown };
@@ -72,18 +99,30 @@ function HeroBlock({ block }: { block: HeroSection }) {
     safeImageUrl(block.backgroundImage, 2000) ||
     safeImageUrl(fp?.image, 2000);
 
-  if (!fp && !heroImage) return <Hero />;
+  const ctaToProp = (c: { label: string; href?: string } | undefined) =>
+    c && c.label
+      ? { label: c.label, href: c.href ?? "#", external: (c.href ?? "").startsWith("http") || (c.href ?? "").startsWith("mailto:") }
+      : undefined;
 
   return (
     <Hero
-      feature={{
-        image: heroImage,
-        imageAlt: fp?.imageAlt ?? block.eyebrow ?? "",
-        projectName: fp?.name ?? "",
-        projectCity: fp?.city ?? "",
-        projectCategory: fp?.category ?? "",
-        projectYear: fp?.year ?? new Date().getFullYear(),
-      }}
+      eyebrow={block.eyebrow}
+      headline={richHeadlineToHero(block.headline)}
+      body={block.body}
+      ctaPrimary={ctaToProp(block.ctaPrimary)}
+      ctaSecondary={ctaToProp(block.ctaSecondary)}
+      feature={
+        fp || heroImage
+          ? {
+              image: heroImage,
+              imageAlt: fp?.imageAlt ?? block.eyebrow ?? "",
+              projectName: fp?.name ?? "",
+              projectCity: fp?.city ?? "",
+              projectCategory: fp?.category ?? "",
+              projectYear: fp?.year ?? new Date().getFullYear(),
+            }
+          : undefined
+      }
     />
   );
 }
