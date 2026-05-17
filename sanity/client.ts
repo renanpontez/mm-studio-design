@@ -4,14 +4,14 @@ import { apiVersion, dataset, projectId, readToken } from "./env";
 let _client: SanityClient | null = null;
 
 const isDev = process.env.NODE_ENV !== "production";
-// When a read token is available, prefer the live API (CDN endpoint doesn't accept tokens
-// and won't return drafts). Also disable CDN in dev so editor changes show up immediately.
+// When a read token is available, prefer the live API (CDN endpoint doesn't
+// accept tokens). Also disable CDN in dev so editor changes show up immediately.
 const useCdn = !isDev && !readToken;
-// If a token is configured we can read drafts — gives editors instant feedback on
-// unpublished re-ordering. Without a token we stick to published content.
-const perspective: "published" | "previewDrafts" = readToken
-  ? "previewDrafts"
-  : "published";
+// Always read published-only on the marketing site. Drafts are an editor
+// concern — they belong in /studio, not in production. (Previously this was
+// `previewDrafts` which is deprecated and can intermittently return null
+// during static prerender at build time.)
+const perspective = "published" as const;
 // Keep ISR window short so dragging sections in the Studio reflects on the
 // site quickly even without a webhook. The /api/revalidate webhook is still
 // the fast path; this is the safety net.
@@ -56,6 +56,7 @@ export async function sanityFetch<T>({
   return c.fetch<T>(query, params, {
     ...fetchOptions,
     perspective,
+    // Read token is server-side only and required for private datasets.
     token: readToken,
   });
 }
