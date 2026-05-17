@@ -19,8 +19,10 @@ const DEFAULT_SEGMENTS: Segment[] = [
 export function Manifesto({
   ordinal = "01",
   label = "Manifesto",
-  segments = DEFAULT_SEGMENTS,
+  segments,
 }: Props = {}) {
+  // Sanity may return null/undefined; fall back to defaults in both cases.
+  const segs = segments && segments.length > 0 ? segments : DEFAULT_SEGMENTS;
   let wordIndex = 0;
   return (
     <section className="container-edge pt-32 md:pt-48 pb-12 md:pb-20 manifesto-section">
@@ -30,7 +32,7 @@ export function Manifesto({
           <Hairline reveal />
         </div>
         <p className="md:col-span-10 font-display text-[clamp(1.75rem,4.4vw,3.5rem)] leading-[1.2] text-ink max-w-[36ch]">
-          {segments.map((seg, segIdx) => (
+          {segs.map((seg, segIdx) => (
             <span
               key={segIdx}
               className={cn(seg.italic && "italic text-caramel-dark")}

@@ -14,7 +14,10 @@ export const projectId = assertValue(
 export const studioUrl = "/studio";
 
 export const revalidateSecret = process.env.SANITY_REVALIDATE_SECRET;
-export const readToken = process.env.SANITY_READ_TOKEN;
+// Prefer a dedicated read token; fall back to write token (server-only).
+// Server components never expose this to the browser bundle.
+export const readToken =
+  process.env.SANITY_READ_TOKEN || process.env.SANITY_WRITE_TOKEN;
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   // Soft guard: warn but never throw. Pages + client lazy-create and

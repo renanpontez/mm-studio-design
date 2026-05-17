@@ -20,7 +20,9 @@ type Feature = {
  * with the circle stamp. Feels more handmade, more vegetal.
  */
 export function Hero({ feature }: { feature?: Feature } = {}) {
-  const heroFeature = feature ?? defaultFeature;
+  // Fall back to defaults if no feature OR feature has empty image
+  const heroFeature =
+    feature && feature.image ? feature : defaultFeature;
   return (
     <section className="hero relative min-h-[100svh] container-edge overflow-hidden">
       <div className="pt-32 md:pt-40 pb-16">
@@ -70,14 +72,16 @@ export function Hero({ feature }: { feature?: Feature } = {}) {
           {/* right: image card with circle stamp */}
           <div className="md:col-span-5 relative">
             <div className="relative aspect-[4/5] overflow-hidden bg-bone-2 rounded-[8px]">
-              <Image
-                src={heroFeature.image}
-                alt={heroFeature.imageAlt}
-                fill
-                priority
-                sizes="(min-width: 768px) 40vw, 90vw"
-                className="hero-image object-cover"
-              />
+              {heroFeature.image && (
+                <Image
+                  src={heroFeature.image}
+                  alt={heroFeature.imageAlt}
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 40vw, 90vw"
+                  className="hero-image object-cover"
+                />
+              )}
               {/* hand-circle stamp anchored top-right, over the image */}
               <div className="absolute top-4 right-4 bg-bone/85 backdrop-blur-md rounded-full p-3">
                 <CircleMark className="h-10 w-10 text-caramel-dark" />

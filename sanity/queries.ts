@@ -53,31 +53,32 @@ export const SERVICE_DETAIL_FRAGMENT = groq`{
 }`;
 
 export const SECTION_FRAGMENT = groq`
+  _key,
   _type == "heroSection" => {
-    _type, eyebrow, headline, body, ctaPrimary, ctaSecondary, backgroundImage,
+    _type, _key, eyebrow, headline, body, ctaPrimary, ctaSecondary, backgroundImage,
     "featuredProject": featuredProject->${PROJECT_CARD_FRAGMENT}
   },
-  _type == "manifestoSection" => { _type, ordinal, label, segments },
+  _type == "manifestoSection" => { _type, _key, ordinal, label, segments },
   _type == "featuredProjectsSection" => {
-    _type, ordinal, label, heading, viewAllLink,
+    _type, _key, ordinal, label, heading, viewAllLink,
     "projects": projects[]->${PROJECT_CARD_FRAGMENT}
   },
   _type == "servicesSection" => {
-    _type, ordinal, label, heading, intro,
+    _type, _key, ordinal, label, heading, intro,
     "services": services[]->{
       _id, name, "slug": slug.current, ordinal, tagline, description
     }
   },
   _type == "foundersSection" => {
-    _type, ordinal, label, heading, intro, portrait,
+    _type, _key, ordinal, label, heading, intro, portrait,
     "founders": founders[]->{ _id, name, role, bio, portrait, order }
   },
-  _type == "processSection" => { _type, ordinal, label, heading, steps },
+  _type == "processSection" => { _type, _key, ordinal, label, heading, steps },
   _type == "pillarsSection" => {
-    _type, ordinal, label, heading,
+    _type, _key, ordinal, label, heading,
     "pillars": pillars[]->{ _id, ordinal, name, description, order }
   },
-  _type == "contactCtaSection" => { _type, ordinal, label, heading, intro, ctaPrimary, ctaSecondary }
+  _type == "contactCtaSection" => { _type, _key, ordinal, label, heading, intro, ctaPrimary, ctaSecondary }
 `;
 
 /* ---------- queries ---------- */
