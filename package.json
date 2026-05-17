@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "concurrently -n site,studio -c magenta,green --kill-others-on-fail \"npm run dev:site\" \"npm run dev:studio\"",
+    "dev:site": "next dev",
+    "dev:studio": "cd studio && npm run dev -- --port 3333",
+    "build": "npm run build:site && npm run build:studio",
+    "build:site": "next build",
+    "build:studio": "cd studio && npm run build",
     "start": "next start",
     "lint": "eslint"
   },
@@ -32,6 +36,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4",
