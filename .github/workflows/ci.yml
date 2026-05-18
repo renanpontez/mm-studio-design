@@ -10,12 +10,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    env:
-      # Soft Sanity env so the build can prerender without real creds.
-      # The env.ts has a soft guard that warns instead of throwing when these
-      # are missing in non-production, so dummy values keep the build quiet.
-      NEXT_PUBLIC_SANITY_PROJECT_ID: ci-dummy
-      NEXT_PUBLIC_SANITY_DATASET: production
+    # Sanity env vars are intentionally unset for CI so app/page.tsx renders the
+    # "publish in Studio" placeholder (sanityConfigured=false branch) instead of
+    # trying to fetch from a dummy project. The real build with content is
+    # produced on Vercel where the env vars are configured.
     steps:
       - uses: actions/checkout@v4
 
@@ -31,4 +29,4 @@ jobs:
         run: npx tsc --noEmit
 
       - name: Build (Next.js)
-        run: npm run build
+        run: npm run build:site
