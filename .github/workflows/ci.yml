@@ -10,10 +10,15 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    # Sanity env vars are intentionally unset for CI so app/page.tsx renders the
-    # "publish in Studio" placeholder (sanityConfigured=false branch) instead of
-    # trying to fetch from a dummy project. The real build with content is
-    # produced on Vercel where the env vars are configured.
+    # Real Sanity env so CI builds the same prerendered HTML that Vercel will.
+    # Public IDs are inline; the read token (private dataset access) comes from
+    # the GH Actions secret SANITY_READ_TOKEN. Set with:
+    #   printf "<token>" | gh secret set SANITY_READ_TOKEN --repo renanpontez/mm-studio-design
+    env:
+      NEXT_PUBLIC_SANITY_PROJECT_ID: ca1b6ozb
+      NEXT_PUBLIC_SANITY_DATASET: production
+      NEXT_PUBLIC_SANITY_API_VERSION: "2024-01-01"
+      SANITY_READ_TOKEN: ${{ secrets.SANITY_READ_TOKEN }}
     steps:
       - uses: actions/checkout@v4
 

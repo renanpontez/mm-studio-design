@@ -2,19 +2,18 @@
 # Pre-push validation: runs the same checks as GitHub Actions CI so we catch
 # typecheck and build failures BEFORE pushing instead of after.
 #
-# Skip ad-hoc with: git push --no-verify
-# Disable globally with: git config core.hooksPath /dev/null
+# Uses the real env from .env.local (loaded by Next via the dotenv-style
+# loader). This mirrors prod/CI behavior — including a real Sanity fetch — so
+# bugs like "manifesto block has no body" or "rename broke the GROQ projection"
+# surface here.
+#
+# Skip ad-hoc: git push --no-verify
 set -e
 
-# Run with the SAME env shape CI uses so we catch divergence between local
-# (real Sanity env in .env.local) and CI (no env vars → placeholder branch).
 echo "→ [pre-push] TypeScript check"
 npx tsc --noEmit
 
-echo "→ [pre-push] Next.js build (CI-equivalent: no Sanity env)"
-env -i \
-  HOME="$HOME" \
-  PATH="$PATH" \
-  npm run build:site
+echo "→ [pre-push] Next.js build (uses .env.local — same env CI/Vercel use)"
+npm run build:site
 
 echo "✓ [pre-push] passed"
