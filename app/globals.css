@@ -15,7 +15,7 @@
   --color-ink: #1f1e1a;
   --color-ink-2: #3e3b33;
   --color-caramel: #b0895c;
-  --color-caramel-dark: #916e47;
+  --color-caramel-dark: #766361;
   --color-clay: #a86a4a;
   --color-stone: #9c9384;
 
@@ -48,13 +48,13 @@
   --secondary-foreground: #1f1e1a;
   --muted: #e6e5e2;
   --muted-foreground: #3e3b33;
-  --accent: #916e47;
+  --accent: #766361;
   --accent-foreground: #f1f0ec;
   --destructive: #b3261e;
   --destructive-foreground: #f1f0ec;
   --border: rgba(140, 140, 138, 0.35);
   --input: rgba(140, 140, 138, 0.4);
-  --ring: #916e47;
+  --ring: #766361;
   --radius: 0.75rem;
 }
 
