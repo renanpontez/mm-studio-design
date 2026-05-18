@@ -1,11 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 import { navigation, studio } from "@/lib/content";
+
+function isNavActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(href + "/");
+}
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname() ?? "/";
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -24,16 +32,25 @@ export function MobileMenu() {
           className="flex-1 flex flex-col items-center justify-center gap-8 text-center"
           aria-label="mobile"
         >
-          {navigation.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={() => setOpen(false)}
-              className="font-display text-4xl leading-none text-ink transition-colors duration-300 hover:text-caramel-dark"
-            >
-              {item.label}
-            </a>
-          ))}
+          {navigation.map((item) => {
+            const active = isNavActive(pathname, item.href);
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                aria-current={active ? "page" : undefined}
+                onClick={() => setOpen(false)}
+                className={cn(
+                  "font-display text-4xl leading-none transition-colors duration-300",
+                  active
+                    ? "text-caramel-dark italic"
+                    : "text-ink hover:text-caramel-dark"
+                )}
+              >
+                {item.label}
+              </a>
+            );
+          })}
         </nav>
 
         <div className="flex flex-col items-center gap-4 pb-10">

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState, type CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 import { CircleMark } from "@/components/ui/CircleMark";
@@ -9,8 +10,15 @@ import { navigation, studio } from "@/lib/content";
 
 const reveal = (i: number) => ({ "--reveal-i": i } as CSSProperties);
 
+// Active when the current pathname matches the link or is nested under it.
+function isNavActive(pathname: string, href: string) {
+  if (href === "/") return pathname === "/";
+  return pathname === href || pathname.startsWith(href + "/");
+}
+
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname() ?? "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -45,16 +53,25 @@ export function Header() {
           {/* nav + cta right */}
           <div className="hidden md:flex items-center gap-10">
             <nav className="flex items-center gap-7" aria-label="primary">
-              {navigation.map((item, i) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="nav-reveal inline-flex items-baseline font-mono-label text-ink transition-colors duration-300 hover:text-caramel-dark"
-                  style={reveal(i + 2)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navigation.map((item, i) => {
+                const active = isNavActive(pathname, item.href);
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={active ? "page" : undefined}
+                    className={cn(
+                      "nav-reveal inline-flex items-baseline font-mono-label transition-colors duration-300",
+                      active
+                        ? "text-caramel-dark"
+                        : "text-ink hover:text-caramel-dark"
+                    )}
+                    style={reveal(i + 2)}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
             </nav>
 
             <a
