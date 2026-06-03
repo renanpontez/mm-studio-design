@@ -4,11 +4,10 @@ const step = defineArrayMember({
   type: "object",
   name: "step",
   fields: [
-    defineField({ name: "ordinal", type: "string" }),
     defineField({ name: "name", type: "string", validation: (r) => r.required() }),
     defineField({ name: "description", type: "text", rows: 2 }),
   ],
-  preview: { select: { title: "name", subtitle: "ordinal" } },
+  preview: { select: { title: "name" } },
 });
 
 export const processSection = defineType({

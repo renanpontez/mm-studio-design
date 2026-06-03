@@ -8,7 +8,7 @@ import { parseBody } from "next-sanity/webhook";
  * Configure in the Sanity dashboard:
  *   URL:     https://<your-domain>/api/revalidate
  *   Trigger: Create, Update, Delete (and "Publish" if available)
- *   Filter:  _type in ["page","project","service","founder","pillar","siteSettings","navigation"]
+ *   Filter:  _type in ["page","project","projectCategory","service","founder","pillar","siteSettings","navigation"]
  *   Projection:
  *     {
  *       "_type": _type,
@@ -55,6 +55,13 @@ export async function POST(req: NextRequest) {
         paths.add("/");
         paths.add("/portfolio");
         if (body.slug) paths.add(`/portfolio/${body.slug}`);
+        break;
+      case "projectCategory":
+        // A category rename ripples into every project card label.
+        tags.add("projects");
+        tags.add("projectCategories");
+        paths.add("/");
+        paths.add("/portfolio");
         break;
       case "service":
         tags.add("services");

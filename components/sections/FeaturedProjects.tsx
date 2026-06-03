@@ -1,7 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Hairline } from "@/components/ui/Hairline";
 import { CTA } from "@/components/ui/CTA";
 import { categoryLabels } from "@/lib/content";
 
@@ -55,67 +54,61 @@ export function FeaturedProjects({
       </div>
 
       {featured.length > 0 && (
-        <>
-          <div className="mt-16">
-            <Hairline reveal />
-          </div>
-
-          <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-16">
-            {featured.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/portfolio/${p.slug}`}
-                className="project-card group block fade-up"
-              >
-                <div className="project-image relative overflow-hidden bg-bone-2 rounded-[8px] aspect-[4/5]">
-                  {p.image && (
-                    <Image
-                      src={p.image}
-                      alt={p.imageAlt}
-                      fill
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
-                    />
-                  )}
-                  <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 opacity-0 transition-opacity duration-700 group-hover:opacity-100 z-10">
-                    <span className="font-mono-label text-bone">{p.year}</span>
-                    <span className="font-mono-label text-bone inline-flex items-center gap-2">
-                      ver projeto
-                      <svg
-                        width="12"
-                        height="12"
-                        viewBox="0 0 14 14"
-                        aria-hidden="true"
-                      >
-                        <path
-                          d="M1 7 H13 M8 2 L13 7 L8 12"
-                          stroke="currentColor"
-                          strokeWidth="1.2"
-                          fill="none"
-                        />
-                      </svg>
-                    </span>
-                  </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+        <div className="mt-16 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-16">
+          {featured.map((p) => (
+            <Link
+              key={p.slug}
+              href={`/portfolio/${p.slug}`}
+              className="project-card group block fade-up"
+            >
+              <div className="project-image relative overflow-hidden bg-bone-2 rounded-[8px] aspect-[4/5]">
+                {p.image && (
+                  <Image
+                    src={p.image}
+                    alt={p.imageAlt}
+                    fill
+                    sizes="(min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
+                  />
+                )}
+                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between p-5 opacity-0 transition-opacity duration-700 group-hover:opacity-100 z-10">
+                  <span className="font-mono-label text-bone">{p.year}</span>
+                  <span className="font-mono-label text-bone inline-flex items-center gap-2">
+                    ver projeto
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 14 14"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M1 7 H13 M8 2 L13 7 L8 12"
+                        stroke="currentColor"
+                        strokeWidth="1.2"
+                        fill="none"
+                      />
+                    </svg>
+                  </span>
                 </div>
-                <div className="mt-5 flex items-start justify-between gap-4">
-                  <div>
-                    <p className="font-mono-label text-stone">
-                      {(categoryLabels as Record<string, string>)[p.category] ??
-                        p.category}
-                    </p>
-                    <h3 className="mt-2 font-display text-2xl md:text-3xl leading-tight text-ink">
-                      {p.name}
-                    </h3>
-                  </div>
-                  <p className="font-mono-label text-stone whitespace-nowrap mt-1">
-                    {p.city?.split(" · ")[1] ?? p.city}
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/40 via-transparent to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100" />
+              </div>
+              <div className="mt-5 flex items-start justify-between gap-4">
+                <div>
+                  <p className="font-mono-label text-stone">
+                    {(categoryLabels as Record<string, string>)[p.category] ??
+                      p.category}
                   </p>
+                  <h3 className="mt-2 font-display text-2xl md:text-3xl leading-tight text-ink">
+                    {p.name}
+                  </h3>
                 </div>
-              </Link>
-            ))}
-          </div>
-        </>
+                <p className="font-mono-label text-stone whitespace-nowrap mt-1">
+                  {p.city?.split(" · ")[1] ?? p.city}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       )}
     </section>
   );

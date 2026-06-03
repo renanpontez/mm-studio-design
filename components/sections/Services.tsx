@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Hairline } from "@/components/ui/Hairline";
 import { cn } from "@/lib/utils";
 
 type ServiceCard = {
@@ -37,8 +36,6 @@ export function Services({
   const list = services ?? [];
   if (list.length === 0 && !heading) return null;
 
-  const total = String(list.length).padStart(2, "0");
-
   return (
     <section id="servicos" className="bg-bone-2 py-24 md:py-32 reveal-on-scroll">
       <div className="container-edge">
@@ -52,10 +49,6 @@ export function Services({
             )}
           </div>
           {intro && <p className="max-w-sm text-ink-2 fade-up">{intro}</p>}
-        </div>
-
-        <div className="mt-16">
-          <Hairline reveal />
         </div>
 
         <div className="mt-16 grid grid-cols-1 md:grid-cols-12 gap-y-10 md:gap-x-12 items-start">
@@ -78,7 +71,6 @@ export function Services({
               <ul className="border-t border-stone/30">
                 {list.map((s, i) => {
                   const isOpen = openIndex === i;
-                  const ord = String(i + 1).padStart(2, "0");
                   return (
                     <li
                       key={s.slug}
@@ -91,9 +83,6 @@ export function Services({
                         className="group flex w-full items-baseline justify-between gap-6 py-7 text-left"
                       >
                         <span className="flex items-baseline gap-5">
-                          <span className="font-mono-label text-stone">
-                            {ord} / {total}
-                          </span>
                           <span className="font-display text-2xl md:text-4xl leading-tight text-ink transition-colors duration-300 group-hover:text-caramel-dark">
                             {s.name}
                           </span>

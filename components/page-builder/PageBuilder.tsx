@@ -18,6 +18,12 @@ import { Founders } from "@/components/sections/Founders";
 import { Process } from "@/components/sections/Process";
 import { Pillars } from "@/components/sections/Pillars";
 import { ContactCTA } from "@/components/sections/ContactCTA";
+import { PageIntro } from "@/components/sections/PageIntro";
+import { FounderBios } from "@/components/sections/FounderBios";
+import { ServicesDetailed } from "@/components/sections/ServicesDetailed";
+import { ProjectsByCategory } from "@/components/sections/ProjectsByCategory";
+import { Channels } from "@/components/sections/Channels";
+import { BriefingForm } from "@/components/sections/BriefingForm";
 import { urlFor } from "@/sanity/lib/image";
 import type {
   Section,
@@ -29,6 +35,12 @@ import type {
   ProcessSection,
   PillarsSection,
   ContactCtaSection,
+  PageIntroSection,
+  FounderBiosSection,
+  ServicesDetailedSection,
+  ProjectsByCategorySection,
+  ChannelsSection,
+  BriefingFormSection,
   SiteSettings,
   RichHeadline,
 } from "@/sanity/types";
@@ -125,7 +137,7 @@ function HeroBlock({ block }: { block: HeroSection }) {
               imageAlt: fp?.imageAlt ?? block.eyebrow ?? "",
               projectName: fp?.name ?? "",
               projectCity: fp?.city ?? "",
-              projectCategory: fp?.category ?? "",
+              projectCategory: fp?.category?.name ?? "",
               projectYear: fp?.year ?? new Date().getFullYear(),
             }
           : undefined
@@ -142,7 +154,7 @@ function FeaturedProjectsBlock({ block }: { block: FeaturedProjectsSection }) {
   const mapped = (block.projects ?? []).map((p) => ({
     slug: p.slug,
     name: p.name,
-    category: p.category,
+    category: p.category?.name ?? "",
     city: p.city ?? "",
     year: p.year ?? new Date().getFullYear(),
     image: safeImageUrl(p.image, 1600),
@@ -180,7 +192,7 @@ function ServicesBlock({ block }: { block: ServicesSection }) {
 
 function FoundersBlock({ block }: { block: FoundersSection }) {
   const portrait = block.portrait
-    ? { src: safeImageUrl(block.portrait, 1200), alt: "Sócias" }
+    ? { src: safeImageUrl(block.portrait, 1200), alt: "Sobre Nós" }
     : undefined;
   const mapped = (block.founders ?? [])
     .slice()
@@ -252,6 +264,94 @@ function ContactCtaBlock({
   );
 }
 
+function PageIntroBlock({ block }: { block: PageIntroSection }) {
+  return (
+    <PageIntro
+      dimensionLeft={block.dimensionLeft}
+      dimensionRight={block.dimensionRight}
+      label={block.label}
+      headline={richHeadlineToReact(block.headline)}
+      body={block.body}
+    />
+  );
+}
+
+function FounderBiosBlock({ block }: { block: FounderBiosSection }) {
+  const mapped = (block.founders ?? [])
+    .slice()
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    .map((f) => ({ name: f.name, role: f.role, bio: f.bio }));
+  return <FounderBios founders={mapped.length > 0 ? mapped : undefined} />;
+}
+
+function ServicesDetailedBlock({ block }: { block: ServicesDetailedSection }) {
+  const mapped = (block.services ?? []).map((s) => ({
+    slug: s.slug,
+    name: s.name,
+    tagline: s.tagline,
+    description: s.description,
+    includes: s.includes,
+  }));
+  return (
+    <ServicesDetailed
+      label={block.label}
+      services={mapped.length > 0 ? mapped : undefined}
+    />
+  );
+}
+
+function ProjectsByCategoryBlock({
+  block,
+}: {
+  block: ProjectsByCategorySection;
+}) {
+  const mapped = (block.categories ?? []).map((c) => ({
+    slug: c.slug,
+    name: c.name,
+    projects: (c.projects ?? []).map((p) => ({
+      slug: p.slug,
+      name: p.name,
+      year: p.year,
+      image: safeImageUrl(p.image, 1600),
+      imageAlt: p.imageAlt ?? "",
+      summary: p.summary,
+    })),
+  }));
+  return (
+    <ProjectsByCategory
+      showAnchorNav={block.showAnchorNav}
+      categories={mapped.length > 0 ? mapped : undefined}
+    />
+  );
+}
+
+function ChannelsBlock({
+  block,
+  settings,
+}: {
+  block: ChannelsSection;
+  settings?: SiteSettings | null;
+}) {
+  return (
+    <Channels
+      label={block.label}
+      channels={block.channels}
+      settings={settings}
+    />
+  );
+}
+
+function BriefingFormBlock({ block }: { block: BriefingFormSection }) {
+  return (
+    <BriefingForm
+      label={block.label}
+      heading={richHeadlineToReact(block.heading)}
+      intro={block.intro}
+      metadata={block.metadata}
+    />
+  );
+}
+
 /* ---------- entry ---------- */
 
 export function PageBuilder({
@@ -286,6 +386,20 @@ export function PageBuilder({
             return (
               <ContactCtaBlock key={key} block={section} settings={settings} />
             );
+          case "pageIntroSection":
+            return <PageIntroBlock key={key} block={section} />;
+          case "founderBiosSection":
+            return <FounderBiosBlock key={key} block={section} />;
+          case "servicesDetailedSection":
+            return <ServicesDetailedBlock key={key} block={section} />;
+          case "projectsByCategorySection":
+            return <ProjectsByCategoryBlock key={key} block={section} />;
+          case "channelsSection":
+            return (
+              <ChannelsBlock key={key} block={section} settings={settings} />
+            );
+          case "briefingFormSection":
+            return <BriefingFormBlock key={key} block={section} />;
           default:
             console.warn(
               `[PageBuilder] unknown section type: ${(section as Section)._type}`

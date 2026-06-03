@@ -7,13 +7,19 @@ import type { Image as SanityImage } from "sanity";
 
 export type SanityRef = { _ref: string; _type: "reference" };
 
-export type ProjectCategory = "residencial" | "comercial" | "corporativo";
+export type ProjectCategory = {
+  _id?: string;
+  name: string;
+  slug: string;
+  order?: number;
+  description?: string;
+};
 
 export type ProjectCard = {
   _id: string;
   name: string;
   slug: string;
-  category: ProjectCategory;
+  category?: ProjectCategory;
   city?: string;
   year?: number;
   area?: string;
@@ -131,7 +137,7 @@ export type ProcessSection = {
   _key: string;
   label?: string;
   heading?: RichHeadline;
-  steps?: { ordinal?: string; name: string; description?: string }[];
+  steps?: { name: string; description?: string }[];
 };
 
 export type PillarsSection = {
@@ -152,6 +158,54 @@ export type ContactCtaSection = {
   ctaSecondary?: CTA;
 };
 
+export type PageIntroSection = {
+  _type: "pageIntroSection";
+  _key: string;
+  dimensionLeft?: string;
+  dimensionRight?: string;
+  label?: string;
+  headline?: RichHeadline;
+  body?: string;
+};
+
+export type FounderBiosSection = {
+  _type: "founderBiosSection";
+  _key: string;
+  founders?: Founder[];
+};
+
+export type ServicesDetailedSection = {
+  _type: "servicesDetailedSection";
+  _key: string;
+  label?: string;
+  services?: (ServiceSummary & { includes?: string[] })[];
+};
+
+export type ProjectsByCategorySection = {
+  _type: "projectsByCategorySection";
+  _key: string;
+  showAnchorNav?: boolean;
+  categories?: (ProjectCategory & { projects?: ProjectCard[] })[];
+};
+
+export type ChannelName = "whatsapp" | "phone" | "email" | "instagram";
+
+export type ChannelsSection = {
+  _type: "channelsSection";
+  _key: string;
+  label?: string;
+  channels?: ChannelName[];
+};
+
+export type BriefingFormSection = {
+  _type: "briefingFormSection";
+  _key: string;
+  label?: string;
+  heading?: RichHeadline;
+  intro?: string;
+  metadata?: { label: string; value: string }[];
+};
+
 export type Section =
   | HeroSection
   | ManifestoSection
@@ -160,7 +214,13 @@ export type Section =
   | FoundersSection
   | ProcessSection
   | PillarsSection
-  | ContactCtaSection;
+  | ContactCtaSection
+  | PageIntroSection
+  | FounderBiosSection
+  | ServicesDetailedSection
+  | ProjectsByCategorySection
+  | ChannelsSection
+  | BriefingFormSection;
 
 /* ---------- documents ---------- */
 
@@ -183,6 +243,7 @@ export type SiteSettings = {
 export type Navigation = {
   primary?: { label: string; href: string }[];
   footer?: { label: string; href: string }[];
+  primaryCta?: CTA;
 };
 
 export type PageDoc = {

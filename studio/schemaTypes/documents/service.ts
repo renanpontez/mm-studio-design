@@ -34,7 +34,7 @@ export const service = defineType({
   fields: [
     defineField({ name: "name", type: "string", validation: (r) => r.required() }),
     defineField({ name: "slug", type: "slug", options: { source: "name" }, validation: (r) => r.required() }),
-    defineField({ name: "ordinal", type: "string", description: "ex.: 01, 02, 03" }),
+    defineField({ name: "order", type: "number", description: "Menor primeiro." }),
     defineField({ name: "tagline", type: "string" }),
     defineField({ name: "description", type: "text", rows: 4 }),
     defineField({ name: "forWho", title: "Para quem é", type: "array", of: [{ type: "text", rows: 2 }] }),
@@ -50,6 +50,6 @@ export const service = defineType({
     }),
     defineField({ name: "seo", type: "seo" }),
   ],
-  orderings: [{ title: "Ordinal", name: "ordinal", by: [{ field: "ordinal", direction: "asc" }] }],
+  orderings: [{ title: "Ordem", name: "order", by: [{ field: "order", direction: "asc" }] }],
   preview: { select: { title: "name", subtitle: "tagline" } },
 });

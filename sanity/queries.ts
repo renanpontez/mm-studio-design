@@ -6,7 +6,7 @@ export const PROJECT_CARD_FRAGMENT = groq`{
   _id,
   name,
   "slug": slug.current,
-  category,
+  "category": category->{ _id, name, "slug": slug.current, order },
   city,
   year,
   area,
@@ -20,7 +20,7 @@ export const PROJECT_DETAIL_FRAGMENT = groq`{
   _id,
   name,
   "slug": slug.current,
-  category,
+  "category": category->{ _id, name, "slug": slug.current, order },
   city,
   year,
   area,
@@ -41,7 +41,7 @@ export const SERVICE_DETAIL_FRAGMENT = groq`{
   _id,
   name,
   "slug": slug.current,
-  ordinal,
+  order,
   tagline,
   description,
   forWho,
@@ -78,7 +78,33 @@ export const SECTION_FRAGMENT = groq`
     _type, _key, label, heading,
     "pillars": pillars[]->{ _id, name, description, order }
   },
-  _type == "contactCtaSection" => { _type, _key, label, heading, intro, ctaPrimary, ctaSecondary }
+  _type == "contactCtaSection" => { _type, _key, label, heading, intro, ctaPrimary, ctaSecondary },
+  _type == "pageIntroSection" => { _type, _key, dimensionLeft, dimensionRight, label, headline, body },
+  _type == "founderBiosSection" => {
+    _type, _key,
+    "founders": coalesce(founders[]->{ _id, name, role, bio, portrait, order },
+                         *[_type == "founder"] | order(order asc){ _id, name, role, bio, portrait, order })
+  },
+  _type == "servicesDetailedSection" => {
+    _type, _key, label,
+    "services": coalesce(services[]->{ _id, name, "slug": slug.current, tagline, description, includes },
+                         *[_type == "service"] | order(order asc){ _id, name, "slug": slug.current, tagline, description, includes })
+  },
+  _type == "projectsByCategorySection" => {
+    _type, _key, showAnchorNav,
+    "categories": coalesce(
+      categories[]->{
+        _id, name, "slug": slug.current, order,
+        "projects": *[_type == "project" && references(^._id)] | order(year desc, name asc)${PROJECT_CARD_FRAGMENT}
+      },
+      *[_type == "projectCategory" && count(*[_type == "project" && references(^._id)]) > 0] | order(order asc, name asc){
+        _id, name, "slug": slug.current, order,
+        "projects": *[_type == "project" && references(^._id)] | order(year desc, name asc)${PROJECT_CARD_FRAGMENT}
+      }
+    )
+  },
+  _type == "channelsSection" => { _type, _key, label, channels },
+  _type == "briefingFormSection" => { _type, _key, label, heading, intro, metadata }
 `;
 
 /* ---------- queries ---------- */
@@ -101,7 +127,7 @@ export const PROJECT_DETAIL_QUERY = groq`*[_type == "project" && slug.current ==
 
 export const PROJECT_SLUGS_QUERY = groq`*[_type == "project" && defined(slug.current)][].slug.current`;
 
-export const SERVICES_INDEX_QUERY = groq`*[_type == "service"] | order(ordinal asc)${SERVICE_DETAIL_FRAGMENT}`;
+export const SERVICES_INDEX_QUERY = groq`*[_type == "service"] | order(order asc)${SERVICE_DETAIL_FRAGMENT}`;
 
 export const SERVICE_DETAIL_QUERY = groq`*[_type == "service" && slug.current == $slug][0]${SERVICE_DETAIL_FRAGMENT}`;
 
@@ -110,3 +136,7 @@ export const SERVICE_SLUGS_QUERY = groq`*[_type == "service" && defined(slug.cur
 export const FOUNDERS_QUERY = groq`*[_type == "founder"] | order(order asc)`;
 
 export const PILLARS_QUERY = groq`*[_type == "pillar"] | order(order asc)`;
+
+export const PROJECT_CATEGORIES_QUERY = groq`*[_type == "projectCategory"] | order(order asc, name asc){
+  _id, name, "slug": slug.current, order, description
+}`;

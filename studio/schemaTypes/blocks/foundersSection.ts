@@ -2,14 +2,14 @@ import { defineField, defineType } from "sanity";
 
 export const foundersSection = defineType({
   name: "foundersSection",
-  title: "Sócias",
+  title: "Sobre Nós",
   type: "object",
   fields: [
-    defineField({ name: "label", type: "string", initialValue: "Sócias" }),
+    defineField({ name: "label", type: "string", initialValue: "Sobre Nós" }),
     defineField({ name: "heading", type: "richHeadline" }),
     defineField({ name: "intro", type: "text", rows: 3 }),
     defineField({ name: "founders", type: "array", of: [{ type: "reference", to: [{ type: "founder" }] }], validation: (r) => r.min(1).max(4) }),
     defineField({ name: "portrait", title: "Retrato compartilhado", type: "image", options: { hotspot: true } }),
   ],
-  preview: { prepare: () => ({ title: "Sócias" }) },
+  preview: { prepare: () => ({ title: "Sobre Nós" }) },
 });

@@ -4,16 +4,31 @@ import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
-import { navigation, studio } from "@/lib/content";
+import { WhatsappIcon } from "@/components/ui/icons/WhatsappIcon";
+import { navigation as fallbackNav, studio as fallbackStudio } from "@/lib/content";
+import type { Navigation, SiteSettings } from "@/sanity/types";
 
 function isNavActive(pathname: string, href: string) {
   if (href === "/") return pathname === "/";
   return pathname === href || pathname.startsWith(href + "/");
 }
 
-export function MobileMenu() {
+type Props = {
+  navigation?: Navigation | null;
+  settings?: SiteSettings | null;
+};
+
+export function MobileMenu({ navigation, settings }: Props) {
   const [open, setOpen] = useState(false);
   const pathname = usePathname() ?? "/";
+
+  const items = navigation?.primary?.length ? navigation.primary : fallbackNav;
+  const cta = navigation?.primaryCta;
+  const ctaLabel = cta?.label ?? "Iniciar conversa";
+  const ctaHref = cta?.href ?? settings?.whatsapp ?? fallbackStudio.whatsapp;
+  const instagram = settings?.instagram ?? fallbackStudio.instagram;
+  const instagramHandle =
+    settings?.instagramHandle ?? fallbackStudio.instagramHandle;
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -32,7 +47,7 @@ export function MobileMenu() {
           className="flex-1 flex flex-col items-center justify-center gap-8 text-center"
           aria-label="mobile"
         >
-          {navigation.map((item) => {
+          {items.map((item) => {
             const active = isNavActive(pathname, item.href);
             return (
               <a
@@ -55,29 +70,22 @@ export function MobileMenu() {
 
         <div className="flex flex-col items-center gap-4 pb-10">
           <a
-            href={studio.whatsapp}
+            href={ctaHref}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-3 rounded-full bg-ink px-7 py-4 font-mono-label text-bone"
           >
-            Iniciar conversa
-            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-              <path
-                d="M1 7 H13 M8 2 L13 7 L8 12"
-                stroke="currentColor"
-                strokeWidth="1.4"
-                fill="none"
-              />
-            </svg>
+            {ctaLabel}
+            <WhatsappIcon size={16} />
           </a>
-          {studio.instagramHandle && (
+          {instagramHandle && instagram && (
             <a
-              href={studio.instagram}
+              href={instagram}
               target="_blank"
               rel="noopener noreferrer"
               className="font-mono-label text-stone hover:text-ink transition-colors"
             >
-              {studio.instagramHandle}
+              {instagramHandle}
             </a>
           )}
         </div>
