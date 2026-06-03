@@ -13,12 +13,26 @@ import {
   pillars,
   processSteps,
 } from "@/lib/content";
+import { sanityFetch } from "@/sanity/client";
+import { SITE_SETTINGS_QUERY } from "@/sanity/queries";
+import { buildMetadata } from "@/sanity/lib/metadata";
+import type { SiteSettings } from "@/sanity/types";
 
-export const metadata: Metadata = {
-  title: "Sobre · MM Studio Design",
-  description:
-    "MM Studio Design é um estúdio de design de interiores em Fortaleza, fundado por Marly Martins e Emilly Lorrany.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await sanityFetch<SiteSettings | null>({
+    query: SITE_SETTINGS_QUERY,
+    tags: ["settings"],
+  });
+  return buildMetadata({
+    pageTitle: "Sobre",
+    pageSeo: {
+      description:
+        "MM Studio Design é um estúdio de design de interiores em Fortaleza, fundado por Marly Martins e Emilly Lorrany.",
+    },
+    settings,
+    pathname: "/sobre",
+  });
+}
 
 export default function SobrePage() {
   return (

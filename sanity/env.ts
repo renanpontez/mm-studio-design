@@ -21,9 +21,11 @@ export const readToken =
 
 function assertValue<T>(v: T | undefined, errorMessage: string): T {
   // Soft guard: warn but never throw. Pages + client lazy-create and
-  // gracefully fall back to lib/content.ts when projectId is empty.
-  // This lets production builds succeed before Sanity is configured.
-  if (v === undefined) {
+  // gracefully fall back to the placeholder when projectId is empty.
+  // Throwing here breaks Vercel preview builds + branch deploys that legitimately
+  // run without Sanity secrets. Build-time enforcement happens in app/page.tsx
+  // where we throw IF Sanity is configured but returns nothing.
+  if (v === undefined || v === "") {
     if (process.env.NODE_ENV !== "production") console.warn(errorMessage);
     return "" as unknown as T;
   }

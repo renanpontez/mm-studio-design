@@ -6,12 +6,26 @@ import { CircleMark } from "@/components/ui/CircleMark";
 import { CTA } from "@/components/ui/CTA";
 import { DimensionLabel } from "@/components/ui/DimensionLabel";
 import { services, studio } from "@/lib/content";
+import { sanityFetch } from "@/sanity/client";
+import { SITE_SETTINGS_QUERY } from "@/sanity/queries";
+import { buildMetadata } from "@/sanity/lib/metadata";
+import type { SiteSettings } from "@/sanity/types";
 
-export const metadata: Metadata = {
-  title: "Serviços · MM Studio Design",
-  description:
-    "Consultoria Completa, Projeto de Interiores e Execução de Obras. Três jeitos de trabalhar com o MM Studio Design.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await sanityFetch<SiteSettings | null>({
+    query: SITE_SETTINGS_QUERY,
+    tags: ["settings"],
+  });
+  return buildMetadata({
+    pageTitle: "Serviços",
+    pageSeo: {
+      description:
+        "Consultoria Completa, Projeto de Interiores e Execução de Obras. Três jeitos de trabalhar com o MM Studio Design.",
+    },
+    settings,
+    pathname: "/servicos",
+  });
+}
 
 export default function ServicosPage() {
   return (

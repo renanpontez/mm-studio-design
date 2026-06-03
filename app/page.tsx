@@ -15,10 +15,12 @@
  *   - If Sanity is NOT configured (no projectId env), we render the friendly
  *     "publish in Studio" placeholder so initial setup doesn't crash.
  */
+import type { Metadata } from "next";
 import { PageBuilder } from "@/components/page-builder/PageBuilder";
 import { sanityFetch } from "@/sanity/client";
 import { PAGE_QUERY, SITE_SETTINGS_QUERY } from "@/sanity/queries";
 import { projectId } from "@/sanity/env";
+import { buildMetadata } from "@/sanity/lib/metadata";
 import type { PageDoc, SiteSettings } from "@/sanity/types";
 
 // ISR safety net — webhook is the primary invalidation path.
@@ -38,6 +40,16 @@ async function fetchHomeData() {
     }),
   ]);
   return { home, settings };
+}
+
+export async function generateMetadata(): Promise<Metadata> {
+  const { home, settings } = await fetchHomeData();
+  return buildMetadata({
+    pageSeo: home?.seo,
+    pageTitle: home?.title,
+    settings,
+    pathname: "/",
+  });
 }
 
 export default async function HomePage() {
