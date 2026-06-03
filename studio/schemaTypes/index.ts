@@ -10,6 +10,7 @@ import { siteSettings } from "./documents/siteSettings";
 import { navigation } from "./documents/navigation";
 import { page } from "./documents/page";
 import { project } from "./documents/project";
+import { projectCategory } from "./documents/projectCategory";
 import { service } from "./documents/service";
 import { founder } from "./documents/founder";
 import { pillar } from "./documents/pillar";
@@ -23,6 +24,12 @@ import { foundersSection } from "./blocks/foundersSection";
 import { processSection } from "./blocks/processSection";
 import { pillarsSection } from "./blocks/pillarsSection";
 import { contactCtaSection } from "./blocks/contactCtaSection";
+import { pageIntroSection } from "./blocks/pageIntroSection";
+import { founderBiosSection } from "./blocks/founderBiosSection";
+import { servicesDetailedSection } from "./blocks/servicesDetailedSection";
+import { projectsByCategorySection } from "./blocks/projectsByCategorySection";
+import { channelsSection } from "./blocks/channelsSection";
+import { briefingFormSection } from "./blocks/briefingFormSection";
 
 export const schemaTypes: SchemaTypeDefinition[] = [
   // objects
@@ -34,6 +41,7 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   navigation,
   page,
   project,
+  projectCategory,
   service,
   founder,
   pillar,
@@ -46,4 +54,10 @@ export const schemaTypes: SchemaTypeDefinition[] = [
   processSection,
   pillarsSection,
   contactCtaSection,
+  pageIntroSection,
+  founderBiosSection,
+  servicesDetailedSection,
+  projectsByCategorySection,
+  channelsSection,
+  briefingFormSection,
 ];

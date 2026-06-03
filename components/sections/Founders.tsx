@@ -56,11 +56,7 @@ export function Founders({
         </CTA>
       </div>
 
-      <div className="mt-16">
-        <Hairline reveal />
-      </div>
-
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12 items-start">
+      <div className="mt-16 grid grid-cols-1 md:grid-cols-12 gap-y-12 md:gap-x-12 items-start">
         {portrait?.src && (
           <div className="md:col-span-5 fade-up">
             <div className="md:sticky md:top-24">

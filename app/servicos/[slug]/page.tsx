@@ -63,7 +63,7 @@ export default async function ServiceDetailPage({ params }: Props) {
             </svg>
             Todos os serviços
           </Link>
-          <DimensionLabel label={`Serviço ${service.ordinal} de 03`} />
+          <DimensionLabel label="Serviço" />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-12 gap-y-10 md:gap-x-10 items-end">

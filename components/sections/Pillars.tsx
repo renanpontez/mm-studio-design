@@ -1,5 +1,4 @@
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Hairline } from "@/components/ui/Hairline";
 
 type Pillar = { name: string; description?: string };
 
@@ -19,16 +18,14 @@ export function Pillars({ label, heading, pillars }: Props) {
           {heading}
         </h2>
       )}
-      <Hairline className="mt-10 mb-12" />
-      <ol className="grid grid-cols-1 md:grid-cols-3 gap-10">
+      <ul className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-10">
         {pillars.map((p, i) => (
           <li key={`${p.name}-${i}`} className="fade-up">
-            <p className="font-mono-label text-stone mb-3">{String(i + 1).padStart(2, "0")}</p>
             <h3 className="font-display text-2xl text-ink mb-3">{p.name}</h3>
             {p.description && <p className="text-ink-2 leading-relaxed">{p.description}</p>}
           </li>
         ))}
-      </ol>
+      </ul>
     </section>
   );
 }

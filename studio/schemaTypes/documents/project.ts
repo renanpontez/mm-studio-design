@@ -15,15 +15,10 @@ export const project = defineType({
     defineField({ name: "slug", type: "slug", group: "meta", options: { source: "name", maxLength: 96 }, validation: (r) => r.required() }),
     defineField({
       name: "category",
-      type: "string",
+      title: "Categoria",
+      type: "reference",
       group: "meta",
-      options: {
-        list: [
-          { title: "Residencial", value: "residencial" },
-          { title: "Corporativo", value: "corporativo" },
-        ],
-        layout: "radio",
-      },
+      to: [{ type: "projectCategory" }],
       validation: (r) => r.required(),
     }),
     defineField({ name: "city", type: "string", group: "meta" }),
@@ -53,7 +48,7 @@ export const project = defineType({
     { title: "Nome A→Z", name: "nameAsc", by: [{ field: "name", direction: "asc" }] },
   ],
   preview: {
-    select: { title: "name", subtitle: "category", media: "image" },
+    select: { title: "name", subtitle: "category.name", media: "image" },
     prepare: ({ title, subtitle, media }) => ({ title, subtitle, media }),
   },
 });

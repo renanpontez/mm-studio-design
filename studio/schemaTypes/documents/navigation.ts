@@ -16,6 +16,13 @@ export const navigation = defineType({
   fields: [
     defineField({ name: "primary", title: "Menu principal", type: "array", of: [navLink] }),
     defineField({ name: "footer", title: "Menu do rodapé", type: "array", of: [navLink] }),
+    defineField({
+      name: "primaryCta",
+      title: "CTA principal (cabeçalho)",
+      description:
+        'Botão à direita do menu. Use kind="whatsapp" e cole a URL do wa.me.',
+      type: "cta",
+    }),
   ],
   preview: { prepare: () => ({ title: "Navegação" }) },
 });

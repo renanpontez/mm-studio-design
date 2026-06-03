@@ -1,10 +1,35 @@
 import Link from "next/link";
 import { CircleMark } from "@/components/ui/CircleMark";
 import { Hairline } from "@/components/ui/Hairline";
-import { navigation, studio } from "@/lib/content";
+import {
+  navigation as fallbackNav,
+  studio as fallbackStudio,
+} from "@/lib/content";
+import type { Navigation, SiteSettings } from "@/sanity/types";
 
-export function Footer() {
+type Props = {
+  navigation?: Navigation | null;
+  settings?: SiteSettings | null;
+};
+
+export function Footer({ navigation, settings }: Props) {
   const year = new Date().getFullYear();
+
+  const items =
+    navigation?.footer?.length
+      ? navigation.footer
+      : navigation?.primary?.length
+        ? navigation.primary
+        : fallbackNav;
+  const phone = settings?.phone ?? fallbackStudio.phone;
+  const phoneHref = settings?.phoneHref ?? fallbackStudio.phoneHref;
+  const email = settings?.email ?? fallbackStudio.email;
+  const whatsapp = settings?.whatsapp ?? fallbackStudio.whatsapp;
+  const instagram = settings?.instagram ?? fallbackStudio.instagram;
+  const instagramHandle =
+    settings?.instagramHandle ?? fallbackStudio.instagramHandle;
+  const cities = settings?.cities ?? fallbackStudio.cities;
+
   return (
     <footer className="container-edge pb-10 pt-24 md:pt-32">
       <Hairline />
@@ -25,7 +50,7 @@ export function Footer() {
         <div className="md:col-span-3">
           <p className="font-mono-label text-stone">Navegação</p>
           <ul className="mt-4 space-y-2">
-            {navigation.map((item) => (
+            {items.map((item) => (
               <li key={item.href}>
                 <Link href={item.href} className="pretty-link text-ink text-sm">
                   {item.label}
@@ -38,36 +63,44 @@ export function Footer() {
         <div className="md:col-span-4">
           <p className="font-mono-label text-stone">Contato</p>
           <ul className="mt-4 space-y-2 text-sm">
-            <li>
-              <a href={studio.phoneHref} className="pretty-link">
-                {studio.phone}
-              </a>
-            </li>
-            <li>
-              <a href={`mailto:${studio.email}`} className="pretty-link">
-                {studio.email}
-              </a>
-            </li>
-            <li>
-              <a
-                href={studio.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pretty-link"
-              >
-                Instagram {studio.instagramHandle}
-              </a>
-            </li>
-            <li>
-              <a
-                href={studio.whatsapp}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="pretty-link"
-              >
-                WhatsApp
-              </a>
-            </li>
+            {phone && (
+              <li>
+                <a href={phoneHref} className="pretty-link">
+                  {phone}
+                </a>
+              </li>
+            )}
+            {email && (
+              <li>
+                <a href={`mailto:${email}`} className="pretty-link">
+                  {email}
+                </a>
+              </li>
+            )}
+            {instagram && (
+              <li>
+                <a
+                  href={instagram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pretty-link"
+                >
+                  Instagram {instagramHandle ?? ""}
+                </a>
+              </li>
+            )}
+            {whatsapp && (
+              <li>
+                <a
+                  href={whatsapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="pretty-link"
+                >
+                  WhatsApp
+                </a>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -76,9 +109,7 @@ export function Footer() {
         <p className="font-mono-label text-stone">
           © {year} MM Studio Design · Todos os direitos reservados
         </p>
-        <p className="font-mono-label text-stone">
-          {studio.cities.join(" · ")}
-        </p>
+        <p className="font-mono-label text-stone">{cities.join(" · ")}</p>
       </div>
     </footer>
   );
