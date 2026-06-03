@@ -2,7 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { CTA } from "@/components/ui/CTA";
-import { categoryLabels } from "@/lib/content";
 
 type ProjectCard = {
   slug: string;
@@ -94,10 +93,7 @@ export function FeaturedProjects({
               </div>
               <div className="mt-5 flex items-start justify-between gap-4">
                 <div>
-                  <p className="font-mono-label text-stone">
-                    {(categoryLabels as Record<string, string>)[p.category] ??
-                      p.category}
-                  </p>
+                  <p className="font-mono-label text-stone">{p.category}</p>
                   <h3 className="mt-2 font-display text-2xl md:text-3xl leading-tight text-ink">
                     {p.name}
                   </h3>

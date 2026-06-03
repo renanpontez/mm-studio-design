@@ -1,13 +1,14 @@
 /**
  * MM Studio Design — one-time content migration into Sanity.
  *
- * Usage:
- *   1. Create Sanity project (see /Users/renan/Desktop/_ideas/sanity-cms-plan.md §8).
- *   2. Put these in .env.local:
- *        NEXT_PUBLIC_SANITY_PROJECT_ID=...
- *        NEXT_PUBLIC_SANITY_DATASET=production
- *        SANITY_WRITE_TOKEN=... (Editor role)
- *   3. From site/: npx tsx scripts/migrate-to-sanity.ts
+ * Usage (run BOTH, in order, on a fresh dataset):
+ *   1. From site/: npx tsx scripts/migrate-to-sanity.ts   (this script — seeds docs)
+ *   2. From site/: npx tsx scripts/migrate-pages.ts        (seeds categories + page-builder docs and patches project.category → reference)
+ *
+ * On an existing dataset, you only need migrate-pages.ts (it's idempotent).
+ *
+ * This script writes `project.category` as a reference to category.${slug};
+ * migrate-pages.ts seeds those category docs.
  */
 import { createClient } from "@sanity/client";
 import {
@@ -75,7 +76,8 @@ async function migrate() {
       _type: "project",
       name: p.name,
       slug: { _type: "slug", current: p.slug },
-      category: p.category,
+      // Reference to projectCategory doc (seeded by migrate-pages.ts).
+      category: { _type: "reference", _ref: id("category", p.category) },
       city: p.city,
       year: p.year,
       area: p.area,
@@ -96,12 +98,17 @@ async function migrate() {
       _type: "service",
       name: s.name,
       slug: { _type: "slug", current: s.slug },
-      ordinal: s.ordinal,
+      order: Number(s.ordinal) || undefined,
       tagline: s.tagline,
       description: s.description,
       forWho: s.forWho,
       includes: s.includes,
-      steps: s.steps?.map((step, i) => ({ _key: `step-${i}`, _type: "step", ...step })),
+      steps: s.steps?.map((step, i) => ({
+        _key: `step-${i}`,
+        _type: "step",
+        name: step.name,
+        description: step.description,
+      })),
       differentiators: s.differentiators?.map((d, i) => ({ _key: `d-${i}`, _type: "differentiator", ...d })),
       faq: s.faq?.map((f, i) => ({ _key: `faq-${i}`, _type: "faq", ...f })),
       relatedProjects: s.relatedProjectSlugs?.map((sl) =>
@@ -123,7 +130,7 @@ async function migrate() {
   for (let i = 0; i < pillars.length; i++) {
     const p = pillars[i];
     const _id = id("pillar", p.name.toLowerCase().replace(/\s+/g, "-"));
-    await upsert({ _id, _type: "pillar", ordinal: p.ordinal, name: p.name, description: p.description, order: i });
+    await upsert({ _id, _type: "pillar", name: p.name, description: p.description, order: i });
   }
 
   console.log("\nHome page:");
@@ -142,36 +149,37 @@ async function migrate() {
           ? { _type: "reference", _ref: projectRefs["casa-jv"] }
           : undefined,
       },
-      { _key: "manifesto", _type: "manifestoSection", ordinal: "01", label: "Manifesto" },
+      { _key: "manifesto", _type: "manifestoSection", label: "Manifesto" },
       {
         _key: "projects",
         _type: "featuredProjectsSection",
-        ordinal: "02",
         label: "Portfolio em destaque",
         projects: projects.slice(0, 4).map((p, i) => ({ _type: "reference", _key: `p-${i}`, _ref: projectRefs[p.slug] })),
       },
       {
         _key: "services",
         _type: "servicesSection",
-        ordinal: "03",
         label: "Serviços",
         services: services.map((s, i) => ({ _type: "reference", _key: `s-${i}`, _ref: serviceRefs[s.slug] })),
       },
       {
         _key: "founders",
         _type: "foundersSection",
-        ordinal: "04",
-        label: "A dupla MM",
+        label: "Sobre Nós",
         founders: founderRefs.map((ref, i) => ({ _type: "reference", _key: `f-${i}`, _ref: ref })),
       },
       {
         _key: "process",
         _type: "processSection",
-        ordinal: "05",
         label: "Processo",
-        steps: processSteps.map((s, i) => ({ _key: `st-${i}`, _type: "step", ...s })),
+        steps: processSteps.map((s, i) => ({
+          _key: `st-${i}`,
+          _type: "step",
+          name: s.name,
+          description: s.description,
+        })),
       },
-      { _key: "contact", _type: "contactCtaSection", ordinal: "06", label: "Contato" },
+      { _key: "contact", _type: "contactCtaSection", label: "Contato" },
     ],
   });
 

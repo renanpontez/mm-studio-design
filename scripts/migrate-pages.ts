@@ -22,7 +22,6 @@ import {
   pillars,
   processSteps,
   services,
-  categoryLabels,
 } from "../lib/content";
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
@@ -464,7 +463,6 @@ async function ensureNavigationCta() {
 
 async function main() {
   console.log(`→ Migrating pages → ${projectId}/${dataset}${DRY ? " (dry-run)" : ""}${FORCE ? " (force)" : ""}`);
-  console.log(`  Sample categoryLabels keys for sanity: ${Object.keys(categoryLabels).join(", ")}`);
   await seedCategories();
   await patchProjectCategories();
   await seedPages();
