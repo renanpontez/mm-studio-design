@@ -16,6 +16,7 @@ import { FeaturedProjects } from "@/components/sections/FeaturedProjects";
 import { Services } from "@/components/sections/Services";
 import { Founders } from "@/components/sections/Founders";
 import { Process } from "@/components/sections/Process";
+import { Pillars } from "@/components/sections/Pillars";
 import { ContactCTA } from "@/components/sections/ContactCTA";
 import { urlFor } from "@/sanity/lib/image";
 import type {
@@ -26,6 +27,7 @@ import type {
   ServicesSection,
   FoundersSection,
   ProcessSection,
+  PillarsSection,
   ContactCtaSection,
   SiteSettings,
   RichHeadline,
@@ -205,6 +207,20 @@ function ProcessBlock({ block }: { block: ProcessSection }) {
   );
 }
 
+function PillarsBlock({ block }: { block: PillarsSection }) {
+  const mapped = (block.pillars ?? [])
+    .slice()
+    .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+    .map((p) => ({ name: p.name, description: p.description }));
+  return (
+    <Pillars
+      label={block.label}
+      heading={richHeadlineToReact(block.heading)}
+      pillars={mapped.length > 0 ? mapped : undefined}
+    />
+  );
+}
+
 function ContactCtaBlock({
   block,
   settings,
@@ -264,6 +280,8 @@ export function PageBuilder({
             return <FoundersBlock key={key} block={section} />;
           case "processSection":
             return <ProcessBlock key={key} block={section} />;
+          case "pillarsSection":
+            return <PillarsBlock key={key} block={section} />;
           case "contactCtaSection":
             return (
               <ContactCtaBlock key={key} block={section} settings={settings} />

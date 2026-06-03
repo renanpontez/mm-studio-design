@@ -83,7 +83,7 @@ export function Hero({
           </div>
 
           {feature?.image && (
-            <div className="md:col-span-5 relative">
+            <div className="md:col-span-5 relative flex flex-col">
               <div className="relative aspect-[4/5] overflow-hidden bg-bone-2 rounded-[8px]">
                 <Image
                   src={feature.image}
@@ -97,6 +97,18 @@ export function Hero({
                   <CircleMark className="h-10 w-10 text-caramel-dark" />
                 </div>
               </div>
+              {(feature.projectName || feature.projectCity || feature.projectCategory || feature.projectYear) && (
+                <figcaption className="mt-4 flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1 font-mono-label text-stone fade-up">
+                  {feature.projectName && (
+                    <span className="text-ink">{feature.projectName}</span>
+                  )}
+                  <span className="flex flex-wrap gap-x-3">
+                    {feature.projectCategory && <span>{feature.projectCategory}</span>}
+                    {feature.projectCity && <span>· {feature.projectCity}</span>}
+                    {feature.projectYear ? <span>· {feature.projectYear}</span> : null}
+                  </span>
+                </figcaption>
+              )}
             </div>
           )}
         </div>

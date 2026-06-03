@@ -5,12 +5,26 @@ import { CircleMark } from "@/components/ui/CircleMark";
 import { DimensionLabel } from "@/components/ui/DimensionLabel";
 import { ContactForm } from "@/components/sections/ContactForm";
 import { studio } from "@/lib/content";
+import { sanityFetch } from "@/sanity/client";
+import { SITE_SETTINGS_QUERY } from "@/sanity/queries";
+import { buildMetadata } from "@/sanity/lib/metadata";
+import type { SiteSettings } from "@/sanity/types";
 
-export const metadata: Metadata = {
-  title: "Contato · MM Studio Design",
-  description:
-    "Vamos criar juntas. Conte sobre o seu espaço. Respondemos em até um dia útil.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await sanityFetch<SiteSettings | null>({
+    query: SITE_SETTINGS_QUERY,
+    tags: ["settings"],
+  });
+  return buildMetadata({
+    pageTitle: "Contato",
+    pageSeo: {
+      description:
+        "Vamos criar juntas. Conte sobre o seu espaço. Respondemos em até um dia útil.",
+    },
+    settings,
+    pathname: "/contato",
+  });
+}
 
 export default function ContatoPage() {
   return (

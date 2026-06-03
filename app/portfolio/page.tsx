@@ -9,12 +9,26 @@ import {
   categoryLabels,
   type ProjectCategory,
 } from "@/lib/content";
+import { sanityFetch } from "@/sanity/client";
+import { SITE_SETTINGS_QUERY } from "@/sanity/queries";
+import { buildMetadata } from "@/sanity/lib/metadata";
+import type { SiteSettings } from "@/sanity/types";
 
-export const metadata: Metadata = {
-  title: "Portfolio · MM Studio Design",
-  description:
-    "Portfolio de projetos residenciais e corporativos do estúdio MM Studio Design, em Fortaleza.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await sanityFetch<SiteSettings | null>({
+    query: SITE_SETTINGS_QUERY,
+    tags: ["settings"],
+  });
+  return buildMetadata({
+    pageTitle: "Portfolio",
+    pageSeo: {
+      description:
+        "Portfolio de projetos residenciais e corporativos do estúdio MM Studio Design, em Fortaleza.",
+    },
+    settings,
+    pathname: "/portfolio",
+  });
+}
 
 const order: ProjectCategory[] = ["residencial", "corporativo"];
 

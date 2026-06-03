@@ -177,6 +177,7 @@ export type SiteSettings = {
   whatsapp?: string;
   instagram?: string;
   instagramHandle?: string;
+  defaultSeo?: { title?: string; description?: string; image?: SanityImage };
 };
 
 export type Navigation = {
