@@ -1,3 +1,9 @@
+/**
+ * /servicos/[slug] — Sanity-driven service detail page.
+ *
+ * Static params from SERVICE_SLUGS_QUERY; full content from
+ * SERVICE_DETAIL_QUERY (relatedProjects already dereferenced).
+ */
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -5,45 +11,81 @@ import { notFound } from "next/navigation";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { Hairline } from "@/components/ui/Hairline";
 import { CircleMark } from "@/components/ui/CircleMark";
-import { CTA } from "@/components/ui/CTA";
 import { DimensionLabel } from "@/components/ui/DimensionLabel";
+import { sanityFetch } from "@/sanity/client";
 import {
-  services,
-  projects,
-  categoryLabels,
-  studio,
-} from "@/lib/content";
+  SERVICE_DETAIL_QUERY,
+  SERVICE_SLUGS_QUERY,
+  SERVICES_INDEX_QUERY,
+  SITE_SETTINGS_QUERY,
+} from "@/sanity/queries";
+import { buildMetadata } from "@/sanity/lib/metadata";
+import { urlFor } from "@/sanity/lib/image";
+import type { ServiceDetail, SiteSettings } from "@/sanity/types";
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
+export const revalidate = 3600;
 
-export function generateStaticParams() {
-  return services.map((s) => ({ slug: s.slug }));
+type Props = { params: Promise<{ slug: string }> };
+
+export async function generateStaticParams() {
+  const slugs = await sanityFetch<string[]>({
+    query: SERVICE_SLUGS_QUERY,
+    tags: ["services"],
+  });
+  return (slugs ?? []).map((slug) => ({ slug }));
+}
+
+async function fetchData(slug: string) {
+  const [service, all, settings] = await Promise.all([
+    sanityFetch<ServiceDetail | null>({
+      query: SERVICE_DETAIL_QUERY,
+      params: { slug },
+      tags: [`service:${slug}`, "services"],
+    }),
+    sanityFetch<ServiceDetail[] | null>({
+      query: SERVICES_INDEX_QUERY,
+      tags: ["services"],
+    }),
+    sanityFetch<SiteSettings | null>({
+      query: SITE_SETTINGS_QUERY,
+      tags: ["settings"],
+    }),
+  ]);
+  return { service, all: all ?? [], settings };
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const service = services.find((s) => s.slug === slug);
+  const { service, settings } = await fetchData(slug);
   if (!service) return {};
-  return {
-    title: `${service.name} · MM Studio Design`,
-    description: service.description,
-  };
+  return buildMetadata({
+    pageTitle: service.name,
+    pageSeo: { description: service.description },
+    settings,
+    pathname: `/servicos/${service.slug}`,
+  });
+}
+
+function safeUrl(image: unknown, width = 1600): string {
+  if (!image || typeof image !== "object") return "";
+  const asAny = image as { asset?: unknown };
+  if (!asAny.asset) return "";
+  try {
+    return urlFor(image as never).width(width).url();
+  } catch {
+    return "";
+  }
 }
 
 export default async function ServiceDetailPage({ params }: Props) {
   const { slug } = await params;
-  const service = services.find((s) => s.slug === slug);
+  const { service, all, settings } = await fetchData(slug);
   if (!service) notFound();
 
-  const idx = services.findIndex((s) => s.slug === slug);
-  const next = services[(idx + 1) % services.length];
-
-  const related = (service.relatedProjectSlugs ?? [])
-    .map((sl) => projects.find((p) => p.slug === sl))
-    .filter((p): p is NonNullable<typeof p> => Boolean(p))
-    .slice(0, 3);
+  const idx = all.findIndex((s) => s.slug === slug);
+  const next = all.length > 0 ? all[(idx + 1) % all.length] : null;
+  const related = (service.relatedProjects ?? []).slice(0, 3);
+  const whatsapp = settings?.whatsapp ?? "https://wa.me/5585996477447";
 
   return (
     <>
@@ -72,12 +114,16 @@ export default async function ServiceDetailPage({ params }: Props) {
             <h1 className="mt-6 font-display text-[clamp(2.75rem,8vw,7rem)] leading-[0.95] tracking-tight text-ink max-w-[14ch]">
               {service.name}.
             </h1>
-            <p className="mt-6 italic text-caramel-dark text-xl md:text-2xl">
-              {service.tagline}
-            </p>
-            <p className="mt-8 max-w-lg text-lg text-ink-2">
-              {service.description}
-            </p>
+            {service.tagline && (
+              <p className="mt-6 italic text-caramel-dark text-xl md:text-2xl">
+                {service.tagline}
+              </p>
+            )}
+            {service.description && (
+              <p className="mt-8 max-w-lg text-lg text-ink-2">
+                {service.description}
+              </p>
+            )}
           </div>
           <div className="md:col-span-4">
             <CircleMark className="h-20 w-auto text-caramel-dark/50" />
@@ -89,18 +135,12 @@ export default async function ServiceDetailPage({ params }: Props) {
         <section className="bg-bone-2 py-16 md:py-24 reveal-on-scroll">
           <div className="container-edge">
             <SectionLabel label="Para quem é" />
-            <div className="mt-8">
-              <Hairline reveal />
-            </div>
             <ul className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-px bg-stone/30">
               {service.forWho.map((item, i) => (
                 <li
                   key={i}
                   className="bg-bone-2 p-8 md:p-10 fade-up flex flex-col gap-4"
                 >
-                  <span className="font-display text-5xl text-ink/15 leading-none">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
                   <p className="text-ink-2 leading-relaxed">{item}</p>
                 </li>
               ))}
@@ -124,9 +164,7 @@ export default async function ServiceDetailPage({ params }: Props) {
                   key={i}
                   className="flex items-start gap-4 fade-up border-b border-stone/30 pb-4"
                 >
-                  <span className="font-mono-label text-stone min-w-[2rem] mt-1">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
+                  <span className="text-caramel-dark mt-1.5">•</span>
                   <span className="text-ink-2 text-lg leading-relaxed">
                     {item}
                   </span>
@@ -144,24 +182,18 @@ export default async function ServiceDetailPage({ params }: Props) {
             <h2 className="mt-6 font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] max-w-[16ch] reveal-word">
               <span>Cada etapa, com um propósito.</span>
             </h2>
-            <div className="mt-12">
-              <Hairline reveal />
-            </div>
-            <ol className="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-stone/30">
+            <ol className="mt-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-stone/30">
               {service.steps.map((step, i) => (
                 <li key={i} className="bg-bone-2 p-8 md:p-10 fade-up">
-                  <div className="flex items-center justify-between">
-                    <span className="font-display text-5xl text-ink/15 leading-none">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
-                    <span className="font-mono-label text-stone">Etapa</span>
-                  </div>
+                  <span className="font-mono-label text-stone">Etapa</span>
                   <h3 className="mt-8 font-display text-2xl text-ink">
                     {step.name}
                   </h3>
-                  <p className="mt-3 text-ink-2 leading-relaxed">
-                    {step.description}
-                  </p>
+                  {step.description && (
+                    <p className="mt-3 text-ink-2 leading-relaxed">
+                      {step.description}
+                    </p>
+                  )}
                 </li>
               ))}
             </ol>
@@ -182,9 +214,11 @@ export default async function ServiceDetailPage({ params }: Props) {
                 <h3 className="mt-6 font-display text-2xl md:text-3xl text-ink leading-tight">
                   {d.title}
                 </h3>
-                <p className="mt-4 text-ink-2 leading-relaxed">
-                  {d.description}
-                </p>
+                {d.description && (
+                  <p className="mt-4 text-ink-2 leading-relaxed">
+                    {d.description}
+                  </p>
+                )}
               </article>
             ))}
           </div>
@@ -207,35 +241,38 @@ export default async function ServiceDetailPage({ params }: Props) {
               Ver portfolio completo
             </Link>
           </div>
-          <div className="mt-10">
-            <Hairline reveal />
-          </div>
-          <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-12">
-            {related.map((p) => (
-              <Link
-                key={p.slug}
-                href={`/portfolio/${p.slug}`}
-                className="project-card group block fade-up"
-              >
-                <div className="project-image relative overflow-hidden bg-bone-2 rounded-[8px] aspect-[4/5]">
-                  <Image
-                    src={p.image}
-                    alt={p.imageAlt}
-                    fill
-                    sizes="(min-width: 768px) 30vw, 100vw"
-                    className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
-                  />
-                </div>
-                <div className="mt-4">
-                  <p className="font-mono-label text-stone">
-                    {categoryLabels[p.category]} · {p.year}
-                  </p>
-                  <h3 className="mt-2 font-display text-2xl leading-tight text-ink">
-                    {p.name}
-                  </h3>
-                </div>
-              </Link>
-            ))}
+          <div className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-12">
+            {related.map((p) => {
+              const src = safeUrl(p.image, 1200);
+              return (
+                <Link
+                  key={p.slug}
+                  href={`/portfolio/${p.slug}`}
+                  className="project-card group block fade-up"
+                >
+                  <div className="project-image relative overflow-hidden bg-bone-2 rounded-[8px] aspect-[4/5]">
+                    {src && (
+                      <Image
+                        src={src}
+                        alt={p.imageAlt ?? p.name}
+                        fill
+                        sizes="(min-width: 768px) 30vw, 100vw"
+                        className="object-cover transition-transform duration-[1200ms] ease-[var(--ease-out-expo)] group-hover:scale-[1.04]"
+                      />
+                    )}
+                  </div>
+                  <div className="mt-4">
+                    <p className="font-mono-label text-stone">
+                      {p.category?.name ?? ""}
+                      {p.year ? ` · ${p.year}` : ""}
+                    </p>
+                    <h3 className="mt-2 font-display text-2xl leading-tight text-ink">
+                      {p.name}
+                    </h3>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </section>
       )}
@@ -256,9 +293,11 @@ export default async function ServiceDetailPage({ params }: Props) {
                     <dt className="font-display text-xl md:text-2xl text-ink">
                       {item.q}
                     </dt>
-                    <dd className="mt-3 text-ink-2 leading-relaxed">
-                      {item.a}
-                    </dd>
+                    {item.a && (
+                      <dd className="mt-3 text-ink-2 leading-relaxed">
+                        {item.a}
+                      </dd>
+                    )}
                   </div>
                 ))}
               </dl>
@@ -280,7 +319,7 @@ export default async function ServiceDetailPage({ params }: Props) {
           </h2>
           <div className="flex flex-wrap items-center gap-4 md:justify-end fade-up">
             <a
-              href={studio.whatsapp}
+              href={whatsapp}
               target="_blank"
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-3 rounded-full bg-bone px-7 py-3.5 text-sm tracking-wide text-ink transition-colors duration-500 hover:bg-caramel hover:text-bone"
@@ -297,20 +336,22 @@ export default async function ServiceDetailPage({ params }: Props) {
                 />
               </svg>
             </a>
-            <Link
-              href={`/servicos/${next.slug}`}
-              className="pretty-link font-mono-label text-bone inline-flex items-center gap-2"
-            >
-              Próximo: {next.name}
-              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-                <path
-                  d="M1 7 H13 M8 2 L13 7 L8 12"
-                  stroke="currentColor"
-                  strokeWidth="1.4"
-                  fill="none"
-                />
-              </svg>
-            </Link>
+            {next && next.slug !== service.slug && (
+              <Link
+                href={`/servicos/${next.slug}`}
+                className="pretty-link font-mono-label text-bone inline-flex items-center gap-2"
+              >
+                Próximo: {next.name}
+                <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                  <path
+                    d="M1 7 H13 M8 2 L13 7 L8 12"
+                    stroke="currentColor"
+                    strokeWidth="1.4"
+                    fill="none"
+                  />
+                </svg>
+              </Link>
+            )}
           </div>
         </div>
       </section>

@@ -31,7 +31,7 @@ export type ProjectCard = {
 
 export type ProjectDetail = ProjectCard & {
   description?: string;
-  gallery?: { image: SanityImage; alt?: string }[];
+  gallery?: { src?: string; image?: SanityImage; alt?: string }[];
   seo?: { title?: string; description?: string; image?: SanityImage };
 };
 

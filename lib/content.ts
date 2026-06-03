@@ -328,7 +328,3 @@ export const processSteps = [
   },
 ];
 
-export const categoryLabels: Record<ProjectCategory, string> = {
-  residencial: "Residencial",
-  corporativo: "Corporativo",
-};
