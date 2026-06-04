@@ -1,5 +1,4 @@
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { Hairline } from "@/components/ui/Hairline";
 import { cn } from "@/lib/utils";
 import type { RichHeadline } from "@/sanity/types";
 
@@ -20,11 +19,8 @@ export function Manifesto({ label, body }: Props) {
   return (
     <section className="container-edge py-24 md:py-32 manifesto-section">
       {label && <SectionLabel label={label} />}
-      <div className="mt-12 grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-        <div className="md:col-span-2 hidden md:block pt-6">
-          <Hairline reveal />
-        </div>
-        <p className="md:col-span-10 font-display text-[clamp(1.75rem,4.4vw,3.5rem)] leading-[1.2] text-ink max-w-[36ch]">
+      <div className="mt-12">
+        <p className="font-display text-[clamp(1.75rem,4.4vw,3.5rem)] leading-[1.2] text-ink max-w-[36ch]">
           {body.map((block, bi) =>
             block.children.map((child, ci) => {
               const isItalic = child.marks?.includes("italicAccent");
