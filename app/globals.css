@@ -173,6 +173,11 @@
     display: inline-block;
     overflow: hidden;
     vertical-align: bottom;
+    /* Tight leading on display headlines clips descenders (ç g p y) inside
+       the overflow box. Pad the clipping window and reclaim the space with a
+       negative margin so surrounding layout is unaffected. */
+    padding-bottom: 0.18em;
+    margin-bottom: -0.18em;
   }
   .reveal-word > span {
     display: inline-block;
